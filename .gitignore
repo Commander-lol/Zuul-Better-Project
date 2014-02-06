@@ -1,6 +1,11 @@
+# Compiled Files #
 *.class
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+# Misc Files #
+README.TXT
+*~
