@@ -1,4 +1,8 @@
+package util; 
+
 import java.util.Scanner;
+import command.Command;
+import command.CommandWords;
 
 /**
  * This class is part of the "World of Zuul" application. 
