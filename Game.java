@@ -1,3 +1,6 @@
+import java.io.File;
+import java.util.HashSet;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -27,6 +30,9 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        for(String s : getKvFiles(".")){
+            KvReader.readFile(s);
+        }
     }
 
     /**
@@ -175,5 +181,33 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
+    }
+    /**
+     * Recursively searches the given directory for any files ending with 
+     * '.kv' and adds their paths to a set
+     * @param dir The directory path of the directory to search
+     * @return A HashSet object containing the paths of all the .kv files
+     * that were found in the given directory
+     */
+    private HashSet<String> getKvFiles(String dir){
+		File rootDir = new File(dir);
+		HashSet<String> filePaths = new HashSet<>();
+		
+		if(rootDir.isDirectory()){
+			for(File f : rootDir.listFiles()){
+				if(f.isDirectory()){
+					filePaths.addAll(getKvFiles(f.getPath()));
+				} else {
+					if(f.getPath().endsWith(".kv")){
+						System.out.println(f.getPath());
+						filePaths.add(f.getPath());
+					}
+				}
+			}
+		} else {
+			filePaths.add(dir);
+		}
+    	
+    	return filePaths;
     }
 }
