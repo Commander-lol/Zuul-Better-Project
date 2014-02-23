@@ -2,7 +2,12 @@
 comment0.params=
 comment0.target=Inventory()
 comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Inventory\n
-comment1.params=y
-comment1.target=int\ sampleMethod(int)
-comment1.text=\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\n\ \n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \n
-numComments=2
+comment1.params=newItem
+comment1.target=boolean\ addItem(entities.Item)
+comment1.text=\n\ Attempts\ to\ add\ the\ item\ to\ the\ inventory,\ but\ will\n\ not\ do\ so\ if\ that\ would\ increase\ the\ weight\ beyond\n\ the\ defined\ maximum\n\ @param\ newItem\ The\ item\ to\ put\ in\ the\ inventory\n\ @return\ true\ if\ the\ item\ has\ successfully\ been\ added,\n\ false\ if\ it\ is\ too\ heavy\n
+comment2.params=itemName
+comment2.target=entities.Item\ removeItem(java.lang.String)
+comment2.text=\n\ Removes\ the\ first\ item\ in\ the\ inventory\ that\ has\ the\ given\ name\n\ and\ returns\ it.\ Will\ return\ null\ if\ no\ item\ is\ found.\n\ @param\ itemName\ The\ name\ of\ the\ item\ that\ will\ be\ removed\n\ @return\ the\ Item\ whose\ name\ matches\ the\ given\ string\n
+comment3.params=
+comment3.target=void\ printInventory()
+numComments=4
