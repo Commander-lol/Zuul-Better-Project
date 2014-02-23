@@ -13,7 +13,7 @@ package command;
 
 public class CommandWords {
 	// a constant array that holds all valid command words
-	private static final String[] validCommands = { "go", "quit", "help", "view" };
+	private static final String[] validCommands = { "go", "quit", "help", "view", "back", "take", "use", "give", "combine"};
 
 	/**
 	 * Constructor - initialise the command words.

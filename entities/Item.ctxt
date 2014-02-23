@@ -1,8 +1,10 @@
 #BlueJ class context
-comment0.params=
-comment0.target=Item()
-comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Item\n
-comment1.params=y
-comment1.target=int\ sampleMethod(int)
-comment1.text=\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\n\ \n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \n
-numComments=2
+comment0.params=weight\ name
+comment0.target=Item(float,\ java.lang.String)
+comment1.params=
+comment1.target=float\ getWeight()
+comment1.text=\n\ @return\ the\ weight\ of\ the\ item\n
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment2.text=\n\ @return\ the\ name\ of\ the\ item\n
+numComments=3
