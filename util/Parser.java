@@ -39,6 +39,7 @@ public class Parser {
 		String inputLine;
 		String word1 = null;
 		String word2 = null;
+		String word3= null;
 
 		System.out.print("> ");
 
@@ -49,14 +50,17 @@ public class Parser {
 			word1 = tokenizer.next();
 			if (tokenizer.hasNext()) {
 				word2 = tokenizer.next();
+				if(tokenizer.hasNext()){
+				    word3 = tokenizer.next();
+				}
 			}
 		}
 		tokenizer.close();
 
 		if (commands.isCommand(word1)) {
-			return new Command(word1, word2);
+			return new Command(word1, word2, word3);
 		} else {
-			return new Command(null, word2);
+			return new Command(null, word2, word3);
 		}
 	}
 
