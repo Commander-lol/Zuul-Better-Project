@@ -18,7 +18,7 @@ package command;
  * 
  * @author Michael Kölling and David J. Barnes.
  *         Editted by Louis Capitanchik, Josh Mulcock, Alice Charterton and John Stones.
- * @version 2011.08.08
+ * @version 2014/03/04
  */
 
 public class Command {
