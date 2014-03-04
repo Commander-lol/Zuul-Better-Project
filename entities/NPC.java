@@ -14,7 +14,7 @@ public NPC (String npcName, Item needed, Item held, String npcSpeech, Room npcRo
     itemNeeded = needed;
     itemHeld = held;
     speech = npcSpeech;
-    currentRoom = npcRoom
+    currentRoom = npcRoom;
 }
 
 public Item getItemNeeded(){
