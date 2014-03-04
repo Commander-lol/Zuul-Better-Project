@@ -1,7 +1,7 @@
 package command;
 
 /**
- * This class is part of the "World of Zuul" application. "World of Zuul" is a
+ * This class is part of the "Go Sunset" application. "Go Sunset" is a
  * very simple, text based adventure game.
  * 
  * This class holds an enumeration of all command words known to the game. It is
