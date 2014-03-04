@@ -7,9 +7,9 @@ private String name;
 private Item itemHeld;
 private Item itemNeeded;
 private String speech;
-private Room currentRoom;
+private String currentRoom;
     
-public NPC (String npcName, Item needed, Item held, String npcSpeech, Room npcRoom){
+public NPC (String npcName, Item needed, Item held, String npcSpeech, String npcRoom){
     name = npcName;
     itemNeeded = needed;
     itemHeld = held;
@@ -29,7 +29,9 @@ public Item getItemHeld(){
     return itemHeld;
 }
 
-public Room getCurrentRoom(){
-   
+public String getCurrentRoom(){
+    return currentRoom;
+}
+
 }
 
