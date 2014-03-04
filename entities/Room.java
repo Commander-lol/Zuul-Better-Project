@@ -3,6 +3,8 @@ package entities;
 import java.util.Set;
 import java.util.HashMap;
 
+import state.Game;
+
 /**
  * Class Room - a room in an adventure game.
  *

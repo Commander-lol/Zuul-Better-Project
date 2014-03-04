@@ -1,5 +1,8 @@
+package state;
+
 import java.io.File;
 import java.util.HashSet;
+import java.util.HashMap;
 
 import entities.Item;
 import entities.Room;
@@ -37,6 +40,8 @@ public class Game {
 	 * Create the game and initialise its internal map.
 	 */
 	public Game() {
+	    
+		rooms = new HashMap <String, Room>(); 
 		createRooms();
 		parser = new Parser();
 		for (String s : getKvFiles(".")) {
@@ -46,7 +51,6 @@ public class Game {
 		bag.addItem(new Item(10f, "Apple"));
 		bag.addItem(new Item(0f, "Scroll"));
 		scroll = new Scroll();
-		rooms = new HashMap <String, Room>; 
 	}
 
 	/**
@@ -56,16 +60,18 @@ public class Game {
 		Room outside, theater, pub, lab, office;
 
 		// create the rooms
-		outside = new Room("outside the main entrance of the university");
-		theater = new Room("in a lecture theater");
-		pub = new Room("in the campus pub");
-		lab = new Room("in a computing lab");
-		office = new Room("in the computing admin office");
+		outside = new Room("outside the main entrance of the university", this);
+		theater = new Room("in a lecture theater", this);
+		pub = new Room("in the campus pub", this);
+		lab = new Room("in a computing lab", this);
+		office = new Room("in the computing admin office", this);
+		
 		rooms.put("outside", outside);
 		rooms.put("theater", theater);
 		rooms.put("pub", pub);
 		rooms.put("lab", lab);
 		rooms.put("office", office);
+		
 		// initialise room exits
 		outside.setExit("east", "theater");
 		outside.setExit("south", "lab");
@@ -110,7 +116,7 @@ public class Game {
 				.println("World of Zuul is a new, incredibly boring adventure game.");
 		System.out.println("Type 'help' if you need help.");
 		System.out.println();
-		System.out.println(currentRoom.getLongDescription());
+		System.out.println(rooms.get(currentRoom).getLongDescription());
 	}
 
 	/**
@@ -187,7 +193,7 @@ public class Game {
 			System.out.println("There is no door!");
 		} else {
 			currentRoom = nextRoom;
-			System.out.println(currentRoom.getLongDescription());
+			System.out.println(rooms.get(currentRoom).getLongDescription());
 		}
 	}
 
