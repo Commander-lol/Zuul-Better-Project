@@ -28,7 +28,7 @@ import util.Parser;
 
 public class Game {
 	private Parser parser;
-	private Room currentRoom;
+	private String currentRoom;
 	private Inventory bag;
 	private Scroll scroll;
 	
@@ -175,7 +175,7 @@ public class Game {
 		String direction = command.getSecondWord();
 
 		// Try to leave current room.
-		Room nextRoom = currentRoom.getExit(direction);
+		String nextRoom = currentRoom.getExit(direction);
 
 		if (nextRoom == null) {
 			System.out.println("There is no door!");
