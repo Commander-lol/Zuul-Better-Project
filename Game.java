@@ -31,6 +31,7 @@ public class Game {
 	private String currentRoom;
 	private Inventory bag;
 	private Scroll scroll;
+	private HashMap <String, Room> rooms; 
 	
 	/**
 	 * Create the game and initialise its internal map.
@@ -45,6 +46,7 @@ public class Game {
 		bag.addItem(new Item(10f, "Apple"));
 		bag.addItem(new Item(0f, "Scroll"));
 		scroll = new Scroll();
+		rooms = new HashMap <String, Room>; 
 	}
 
 	/**
@@ -59,22 +61,26 @@ public class Game {
 		pub = new Room("in the campus pub");
 		lab = new Room("in a computing lab");
 		office = new Room("in the computing admin office");
-
+		rooms.put("outside", outside);
+		rooms.put("theater", theater);
+		rooms.put("pub", pub);
+		rooms.put("lab", lab);
+		rooms.put("office", office);
 		// initialise room exits
-		outside.setExit("east", theater);
-		outside.setExit("south", lab);
-		outside.setExit("west", pub);
+		outside.setExit("east", "theater");
+		outside.setExit("south", "lab");
+		outside.setExit("west", "pub");
 
-		theater.setExit("west", outside);
+		theater.setExit("west", "outside");
 
-		pub.setExit("east", outside);
+		pub.setExit("east", "outside");
 
-		lab.setExit("north", outside);
-		lab.setExit("east", office);
+		lab.setExit("north", "outside");
+		lab.setExit("east", "office");
 
-		office.setExit("west", lab);
+		office.setExit("west", "lab");
 
-		currentRoom = outside; // start game outside
+		currentRoom = "outside"; // start game outside
 	}
 
 	/**
@@ -175,7 +181,7 @@ public class Game {
 		String direction = command.getSecondWord();
 
 		// Try to leave current room.
-		String nextRoom = currentRoom.getExit(direction);
+		String nextRoom = rooms.get(currentRoom).getExit(direction);
 
 		if (nextRoom == null) {
 			System.out.println("There is no door!");
