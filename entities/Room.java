@@ -20,18 +20,19 @@ import java.util.HashMap;
 public class Room 
 {
     private String description;
-    private HashMap<String, Room> exits;        // stores exits of this room.
-
+    private HashMap<String, String> exits;        // stores exits of this room.
+    private Game context;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description, Game context) 
     {
         this.description = description;
-        exits = new HashMap<String, Room>();
+        exits = new HashMap<String, String>();
+        this.context = context;
     }
 
     /**
@@ -39,7 +40,7 @@ public class Room
      * @param direction The direction of the exit.
      * @param neighbor  The room to which the exit leads.
      */
-    public void setExit(String direction, Room neighbor) 
+    public void setExit(String direction, String neighbor) 
     {
         exits.put(direction, neighbor);
     }
@@ -85,7 +86,7 @@ public class Room
      * @param direction The exit's direction.
      * @return The room in the given direction.
      */
-    public Room getExit(String direction) 
+    public String getExit(String direction) 
     {
         return exits.get(direction);
     }
