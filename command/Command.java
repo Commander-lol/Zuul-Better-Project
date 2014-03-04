@@ -5,17 +5,19 @@ package command;
  * very simple, text based adventure game.
  * 
  * This class holds information about a command that was issued by the user. A
- * command currently consists of two strings: a command word and a second word
- * (for example, if the command was "take map", then the two strings obviously
- * are "take" and "map").
+ * command currently consists of three strings:  a command word, a second word
+ * and a third word. (for example, if the command was "give map dwarf", then
+ * the two strings obviously are "give", "map" and "dwarf").
  * 
  * The way this is used is: Commands are already checked for being valid command
  * words. If the user entered an invalid command (a word that is not known) then
  * the command word is <null>.
  * 
- * If the command had only one word, then the second word is <null>.
+ * If the command had only one word, then the second and third words are <null>.
+ * Similarly if the command only has two words, then the third word is <null>.
  * 
- * @author Michael Kölling and David J. Barnes
+ * @author Michael Kölling and David J. Barnes.
+ *         Editted by Louis Capitanchik, Josh Mulcock, Alice Charterton and John Stones.
  * @version 2011.08.08
  */
 
@@ -25,16 +27,16 @@ public class Command {
     private String thirdWord;
 
     /**
-     * Create a command object. First and second word must be supplied, but
-     * either one (or both) can be null. <SOMETHING ABOUT THRID WORD>
+     * Create a command object. All words must be supplied, but any (or any
+     * combination) of the words can be <null>.
      * 
      * @param firstWord
-     *            The first word of the command. Null if the command was not
+     *            The first word of the command. <Null> if the command was not
      *            recognised.
      * @param secondWord
      *            The second word of the command.
      * @param thirdWord
-     *             The thirdWord of the command.
+     *            The third word of the command.
      */
     public Command(String firstWord, String secondWord, String thirdWord) {
         commandWord = firstWord;
@@ -44,7 +46,7 @@ public class Command {
 
     /**
      * Return the command word (the first word) of this command. If the command
-     * was not understood, the result is null.
+     * was not understood, the result is <null>.
      * 
      * @return The command word.
      */
@@ -53,16 +55,20 @@ public class Command {
     }
 
     /**
-     * @return The second word of this command. Returns null if the re was no
-     *         second word.
+     * Return the second word of this command. If no second word was supplied or
+     * the word was not understood, the result is <null>.
+     * 
+     * @return The second word.
      */
     public String getSecondWord() {
         return secondWord;
     }
     
     /**
-     * @return The third word of this command. Returns null if the re was no
-     *         third word.
+     * Return the third word of this command. If no third word was supplied or
+     * the word was not understood, the result is <null>.
+     * 
+     * @return The third word.
      */
     public String getThirdWord() {
         return thirdWord;
