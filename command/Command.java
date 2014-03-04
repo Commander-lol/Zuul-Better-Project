@@ -7,7 +7,7 @@ package command;
  * This class holds information about a command that was issued by the user. A
  * command currently consists of three strings:  a command word, a second word
  * and a third word. (for example, if the command was "give map dwarf", then
- * the two strings obviously are "give", "map" and "dwarf").
+ * the three strings obviously are "give", "map" and "dwarf").
  * 
  * The way this is used is: Commands are already checked for being valid command
  * words. If the user entered an invalid command (a word that is not known) then
