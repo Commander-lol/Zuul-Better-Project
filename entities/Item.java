@@ -1,11 +1,16 @@
 package entities;
 
 /**
- * Write a description of class Item here.
- * 
- * @author (your name)
- * @version (a version number or a date)
- */
+* This class is part of the "World of Zuul" application. "World of Zuul" is a
+* very simple, text based adventure game
+* 
+* This class holds information about an in game item. An item currently consists
+* of a weight and a name.
+*
+* @author Louis Capitanchik
+* @version 2014/02/23
+*/
+
 public class Item {
 	private float weight;
 	private String name;
