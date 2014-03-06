@@ -1,4 +1,4 @@
-Zuul-Better-Project
+Go Sunset
 ===================
 
 Yet another variant of the "Zuul Better" BlueJ example project, titled "Go Sunset".
