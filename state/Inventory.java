@@ -24,69 +24,104 @@ import entities.Item;
 */
 
 public class Inventory {
-	private float maxWeight, currentWeight;
-	private ArrayList<Item> items;
+    private float maxWeight, currentWeight;
+    private ArrayList<Item> items;
 
-	/**
-	 * Constructor for objects of class Inventory
-	 */
-	public Inventory() {
-		items = new ArrayList<>();
-		currentWeight = 0;
-		maxWeight = 300;
-	}
-	
-	/**
-	 * Attempts to add the item to the inventory, but will
-	 * not do so if that would increase the weight beyond
-	 * the defined maximum
-	 * 
-	 * @param newItem The item to put in the inventory
-	 * @return true if the item has successfully been added,
-	 * false if it is too heavy
-	 */
-	public boolean addItem(Item newItem){
-		if(currentWeight + newItem.getWeight() > maxWeight){
-			return false;
-		} else {
-			items.add(newItem);
-			return true;
-		}
-	}
-	
-	/**
-	 * Removes the first item in the inventory that has the given name
-	 * and returns it. Will return null if no item is found.
-	 * 
-	 * @param itemName The name of the item that will be removed
-	 * @return the Item whose name matches the given string
-	 */
-	public Item removeItem(String itemName){
-		boolean found = false;
-		int i = 0;
-		while(!found){
-			Item current = items.get(i);
-			if(current.getName().equals(itemName)){
-				items.remove(i);
-				currentWeight -= current.getWeight();
-				return current;
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 * If available, prints a list of the items in the inventory.
-	 * If the inventory is empty, prints a message informing the player.
-	 */
-	public void printInventory(){
-		if(items.size() == 0){
-			System.out.println("Your bag is empty");
-		} else {
-			System.out.println("In your bag you have: ");
-			for(Item i : items){
-				System.out.println("- " + Phraser.addDeterminer(i.getName()));
-			}
-		}
-	}
+    /**
+     * Constructor for objects of class Inventory
+     */
+    public Inventory() {
+        items = new ArrayList<>();
+        currentWeight = 0;
+        maxWeight = 300;
+    }
+    
+    /**
+     * Attempts to add the item to the inventory, but will
+     * not do so if that would increase the weight beyond
+     * the defined maximum
+     * 
+     * @param newItem The item to put in the inventory
+     * @return true if the item has successfully been added,
+     * false if it is too heavy
+     */
+    public boolean addItem(Item newItem){
+        if(currentWeight + newItem.getWeight() > maxWeight){
+            return false;
+        } else {
+            items.add(newItem);
+            return true;
+        }
+    }
+    
+    /**
+     * Find the given item in the bag and returns it. Will return null if no
+     * item is found.
+     * 
+     * @param itemName the name of the item that will be searched for
+     * @return the Item whose name matches the given string
+     */
+    public Item getItem(String itemName){
+        boolean found = false;
+        int i = 0;
+        while(!found){
+            Item current = items.get(i);
+            if(current.getName().equalsIgnoreCase(itemName)){
+                return current;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Removes the first item in the inventory that has the given name
+     * and returns it. Will return null if no item is found.
+     * 
+     * @param itemName The name of the item that will be removed
+     * @return the Item whose name matches the given string
+     */
+    public Item removeItem(String itemName){
+        boolean found = false;
+        int i = 0;
+        while(!found){
+            Item current = items.get(i);
+            if(current.getName().equalsIgnoreCase(itemName)){
+                items.remove(i);
+                currentWeight -= current.getWeight();
+                return current;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * If available, prints a list of the items in the inventory.
+     * If the inventory is empty, prints a message informing the player.
+     */
+    public void printInventory(){
+        if(items.size() == 0){
+            System.out.println("Your bag is empty");
+        } else {
+            System.out.println("In your bag you have: ");
+            for(Item i : items){
+                System.out.println("- " + Phraser.addDeterminer(i.getName()));
+            }
+        }
+    }
+    
+    /**
+     * Searches the inventory for the specified item, returning whether or not
+     * it is contained within the inventory instance
+     * @param itemName A String containing the item that is being searched for
+     * @return Will return true if the item is inside the inventory, false if it
+     * is not
+     */
+    public boolean contains(String itemName){
+        for(Item i : items){
+            if(i.getName().equalsIgnoreCase(itemName)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
