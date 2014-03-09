@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=npcName\ needed\ held\ npcSpeech\ npcRoom
+comment0.target=NPC(java.lang.String,\ Item,\ Item,\ java.lang.String,\ java.lang.String)
+comment0.text=\r\n\ This\ constructs\ the\ NPC\ class,\ using\ information\ that\ will\ be\ passed\ when\r\n\ a\ new\ NPC\ object\ is\ created.\r\n\ \r\n\ name\ is\ the\ NPC's\ name.\r\n\ itemHeld\ is\ the\ item\ that\ the\ NPC\ currently\ has\ and\ will\ trade\ with\ the\ player\ for\ the\ item\ which\ is\ wanted.\r\n\ itemNeeded\ is\ the\ item\ that\ the\ NPC\ wants\ and\ will\ trade\ the\ the\ itemHeld\ for.\r\n\ speech\ is\ the\ the\ text\ that\ will\ be\ printed\ out\ when\ the\ player\ interacts\ with\ NPC.\r\n\ currentRoom\ is\ the\ name\ of\ the\ room\ the\ NPC\ is\ currently\ in.\r\n\ \r\n\ @param\ npcName\ the\ name\ of\ the\ NPC.\r\n\ @param\ needed\ is\ the\ Item\ that\ the\ NPC\ needs.\r\n\ @param\ held\ is\ the\ Item\ that\ the\ NPC\ currently.\r\n\ @param\ npcSpeech\ is\ the\ speech\ for\ the\ NPC.\r\n\ @param\ npcRoom\ is\ the\ room\ that\ the\ NPC\ is\ currrently\ in.\r\n
+comment1.params=
+comment1.target=Item\ getItemNeeded()
+comment1.text=\r\n\ returns\ the\ item\ wanted\ by\ the\ NPC\r\n
+comment2.params=
+comment2.target=void\ printSpeech()
+comment2.text=\r\n\ prints\ out\ the\ speech\ by\ the\ NPC\r\n
+comment3.params=
+comment3.target=Item\ getItemHeld()
+comment3.text=\r\n\ returns\ the\ the\ item\ held\ by\ the\ NPC\r\n
+comment4.params=
+comment4.target=java.lang.String\ getCurrentRoom()
+comment4.text=\r\n\ returns\ the\ current\ room\ the\ NPC\ is\ in\r\n
+numComments=5
