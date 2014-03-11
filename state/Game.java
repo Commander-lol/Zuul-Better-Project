@@ -11,6 +11,7 @@ import state.Inventory;
 import state.Scroll;
 import util.KvReader;
 import util.Parser;
+import java.util.ArrayList;
 
 /**
  * This class is the main class of the "Go Sunset" application.
@@ -35,12 +36,12 @@ public class Game {
     private Inventory bag;
     private Scroll scroll;
     private HashMap <String, Room> rooms; 
-    
+    private ArrayList <String> previousRooms;
     /**
      * Create the game and initialise its internal map.
      */
     public Game() {
-        
+        previousRooms = new ArrayList <String>();
         rooms = new HashMap <String, Room>(); 
         createRooms();
         parser = new Parser();
@@ -132,6 +133,7 @@ public class Game {
         if (command.isUnknown()) {
             System.out.println("I don't know what you mean...");
             return false;
+           
         }
 
         String commandWord = command.getCommandWord();
@@ -141,7 +143,10 @@ public class Game {
             goRoom(command);
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
-        } else if (commandWord.equals("view")){
+        } else if(commandWord.equals("back")){ String storeSecondWord;
+            if (command.secondWord = null){ storeSecondWord = "1";}
+        }else {storeSecondWord = command.getSecondWord();}
+       else if (commandWord.equals("view")){
             if(command.hasSecondWord()){
                 String sWord = command.getSecondWord();
                 switch(sWord){
@@ -193,10 +198,11 @@ public class Game {
 
         // Try to leave current room.
         String nextRoom = rooms.get(currentRoom).getExit(direction);
-
+        
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
+            previousRooms.add (currentRoom);
             currentRoom = nextRoom;
             System.out.println(rooms.get(currentRoom).getLongDescription());
         }
