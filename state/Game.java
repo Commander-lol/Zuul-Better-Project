@@ -1,5 +1,7 @@
 package state;
 
+import command.Command;
+
 import java.io.File;
 import java.util.HashSet;
 import java.util.HashMap;
@@ -42,12 +44,9 @@ public class Game {
      */
     public Game() {
         previousRooms = new ArrayList <String>();
-        rooms = new HashMap <String, Room>(); 
+        rooms = new HashMap<String, Room>(); 
         createRooms();
         parser = new Parser();
-        for (String s : getKvFiles(".")) {
-            KvReader.readFile(s);
-        }
         bag = new Inventory();
         bag.addItem(new Item(10f, "Apple"));
         bag.addItem(new Item(0f, "Scroll"));
@@ -58,6 +57,19 @@ public class Game {
      * Create all the rooms and link their exits together.
      */
     private void createRooms() {
+        String[] validDirections = {"north", "east", "south", "west", "upstairs", "downstairs"};
+        for (String s : getKvFiles(".\\rooms")) {
+            HashMap<String, String> roomAttributes = KvReader.readFile(s);
+            rooms.put(roomAttributes.get("id"), new Room(roomAttributes.get("description"), this));
+            for (String exit : validDirections) {
+                    if (exit != null) {
+                     rooms.get(roomAttributes.get("id")).setExit(exit, roomAttributes.get(exit));
+                    }
+                }
+            }
+        String currentRoom = "Empty Room 1";
+        }
+        /**
         Room outside, theater, pub, lab, office;
 
         // create the rooms
@@ -88,7 +100,6 @@ public class Game {
         office.setExit("west", "lab");
 
         currentRoom = "outside"; // start game outside
-    }
 
     /**
      * Main play routine. Loops until end of play.
@@ -117,7 +128,7 @@ public class Game {
                 .println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println(rooms.get(currentRoom).getLongDescription());
+        //System.out.println(rooms.get(currentRoom).getLongDescription());
     }
 
     /**
@@ -143,10 +154,14 @@ public class Game {
             goRoom(command);
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
-        } else if(commandWord.equals("back")){ String storeSecondWord;
-            if (command.secondWord = null){ storeSecondWord = "1";}
-        }else {storeSecondWord = command.getSecondWord();}
-       else if (commandWord.equals("view")){
+        } else if (commandWord.equals("back")) { 
+            String storeSecondWord;
+            if (Command.hasSecondWord == null) { 
+                storeSecondWord = "1";
+            } else {
+                storeSecondWord = command.getSecondWord();
+            }
+        } else if (commandWord.equals("view")){
             if(command.hasSecondWord()){
                 String sWord = command.getSecondWord();
                 switch(sWord){
@@ -182,7 +197,7 @@ public class Game {
         System.out.println("Your command words are:");
         parser.showCommands();
     }
-
+    
     /**
      * Try to in to one direction. If there is an exit, enter the new room,
      * otherwise print an error message.
@@ -242,7 +257,6 @@ public class Game {
                     filePaths.addAll(getKvFiles(f.getPath()));
                 } else {
                     if (f.getPath().endsWith(".kv")) {
-                        System.out.println(f.getPath());
                         filePaths.add(f.getPath());
                     }
                 }

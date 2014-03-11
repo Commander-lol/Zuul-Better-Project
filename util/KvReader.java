@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * A simple file reader containing static methods for reading and returning
@@ -20,7 +21,7 @@ public class KvReader {
      *  return null if the file does not exist or throws an error on read.
      */
     public static HashMap<String, String> readFile(String filePath){
-        HashMap<String, String> returnMap = new HashMap<>();
+        HashMap returnMap = new HashMap<String, String>();
         FileReader fileInput;
         BufferedReader fileReader;
         try {
@@ -40,14 +41,13 @@ public class KvReader {
                 if(kv.length!=2){// Malformed line, ignore it
                     continue;
                 }
-                System.out.println("K: " + kv[0] + ", V: " + kv[1]);
                 returnMap.put(kv[0].trim(), kv[1].trim());
             }
         } catch(IOException e) {
             return null;
         }
         
-        try{
+        try {
             fileReader.close();
             fileInput.close();
         } catch(IOException e){
