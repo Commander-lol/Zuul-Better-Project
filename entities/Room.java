@@ -21,14 +21,15 @@ import state.Game;
 
 public class Room 
 {
-    private String description;
-    private HashMap<String, String> exits;        // stores exits of this room.
-    private Game context;
+    protected String description;
+    protected HashMap<String, String> exits;        // stores exits of this room.
+    protected Game context;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      * @param description The room's description.
+     * @param context An instance of the Game class
      */
     public Room(String description, Game context) 
     {

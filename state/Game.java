@@ -1,5 +1,7 @@
 package state;
 
+import command.Command;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,6 +14,7 @@ import state.Inventory;
 import state.Scroll;
 import util.KvReader;
 import util.Parser;
+import java.util.ArrayList;
 
 /**
  * This class is the main class of the "Go Sunset" application.
@@ -37,18 +40,16 @@ public class Game {
     private Scroll scroll;
     private HashMap<String, Room> rooms;
     private ArrayList<String> previousRooms;
-    
+
     /**
      * Create the game and initialise its internal map.
      */
     public Game() {
-        rooms = new HashMap <String, Room>(); 
-        previousRooms = new ArrayList<String>();
+        previousRooms = new ArrayList <String>();
+        rooms = new HashMap<String, Room>(); 
+
         createRooms();
         parser = new Parser();
-        for (String s : getKvFiles(".")) {
-            KvReader.readFile(s);
-        }
         bag = new Inventory();
         bag.addItem(new Item(10f, "Apple"));
         bag.addItem(new Item(0f, "Scroll"));
@@ -59,6 +60,19 @@ public class Game {
      * Create all the rooms and link their exits together.
      */
     private void createRooms() {
+        String[] validDirections = {"north", "east", "south", "west", "upstairs", "downstairs"};
+        for (String s : getKvFiles(".\\rooms")) {
+            HashMap<String, String> roomAttributes = KvReader.readFile(s);
+            rooms.put(roomAttributes.get("id"), new Room(roomAttributes.get("description"), this));
+            for (String exit : validDirections) {
+                    if (exit != null) {
+                     rooms.get(roomAttributes.get("id")).setExit(exit, roomAttributes.get(exit));
+                    }
+                }
+            }
+        String currentRoom = "Empty Room 1";
+        }
+        /*
         Room outside, theater, pub, lab, office;
 
         // create the rooms
@@ -89,7 +103,6 @@ public class Game {
         office.setExit("west", "lab");
 
         currentRoom = "outside"; // start game outside
-    }
 
     /**
      * Main play routine. Loops until end of play.
@@ -134,6 +147,7 @@ public class Game {
         if (command.isUnknown()) {
             System.out.println("I don't know what you mean...");
             return false;
+           
         }
 
         String commandWord = command.getCommandWord();
@@ -168,6 +182,7 @@ public class Game {
                 previousRooms.add(roomsToGo.remove(i));
             }
             goRoom(roomsToGo.remove(0));
+
         } else if (commandWord.equals("view")){
             if(command.hasSecondWord()){
                 String sWord = command.getSecondWord();
@@ -204,7 +219,7 @@ public class Game {
         System.out.println("Your command words are:");
         parser.showCommands();
     }
-
+    
     /**
      * Try to move in one direction. Parses the command to look for various factors
      * including existence of a direction, and the presence of an exit in that direction.
@@ -221,7 +236,7 @@ public class Game {
 
         // Try to leave current room.
         String nextRoom = rooms.get(currentRoom).getExit(direction);
-
+        
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
@@ -273,7 +288,6 @@ public class Game {
                     filePaths.addAll(getKvFiles(f.getPath()));
                 } else {
                     if (f.getPath().endsWith(".kv")) {
-                        System.out.println(f.getPath());
                         filePaths.add(f.getPath());
                     }
                 }
