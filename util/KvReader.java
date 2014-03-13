@@ -21,7 +21,7 @@ public class KvReader {
      *  return null if the file does not exist or throws an error on read.
      */
     public static HashMap<String, String> readFile(String filePath){
-        HashMap returnMap = new HashMap<String, String>();
+        HashMap<String, String> returnMap = new HashMap<String, String>();
         FileReader fileInput;
         BufferedReader fileReader;
         try {
