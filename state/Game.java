@@ -147,7 +147,11 @@ public class Game {
 
         String commandWord = command.getCommandWord();
         if (commandWord.equals("help")) {
-            printHelp();
+           if(command.hasSecondWord()){
+               printHelp(command.getSecondWord());
+            } else {
+               printHelp();
+            }
         } else if (commandWord.equals("go")) {
             parseRoom(command);
         } else if (commandWord.equals("quit")) {
@@ -182,16 +186,25 @@ public class Game {
     // implementations of user commands:
 
     /**
-     * Print out some help information. Here we print some stupid, cryptic
+     * Print out some help information. Here we print a simple
      * message and a list of the command words.
      */
     private void printHelp() {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("You are lost in a large stone tower");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
+        System.out.println();
+        System.out.println("Type \"Help <Command>\" to see what a command does");
     }
+    
+    /**
+     * Print out some help for a specific command
+     */
+    private void printHelp(String command){
+        parser.showCommand(command);
+    }
+    
     
     /**
      * Try to move in one direction. Parses the command to look for various factors

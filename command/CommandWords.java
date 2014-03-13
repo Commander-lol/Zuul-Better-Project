@@ -17,13 +17,13 @@ import java.util.HashMap;
 public class CommandWords {
     // a constant array that holds all valid command words
     // validCommands = { "go", "quit", "help", "view", "back", "take", "use", "give", "combine"};
-    private HashMap<String, String> helpText;
+    private HashMap<String, String> commands;
     /**
      * Constructor - initialise the command words.
      */
     public CommandWords() {
-        helpText = new HashMap<String, String>();
-        helpText = KvReader.readFile("help.kv");
+        commands = new HashMap<String, String>();
+        commands = KvReader.readFile("help.kv");
     }
 
     /**
@@ -32,16 +32,27 @@ public class CommandWords {
      * @return true if it is, false if it isn't.
      */
     public boolean isCommand(String aString) {
-        return helpText.keySet().contains(aString);
+        return commands.keySet().contains(aString);
     }
 
     /**
      * Print all valid commands to System.out.
      */
     public void showAll() {
-        for (String command : helpText.keySet()) {
+        for (String command : commands.keySet()) {
             System.out.print("▶ " + command + "  ");
         }
         System.out.println();
+    }
+    /**
+     * Prints out the extended help message for a given command, or an error if it doesn't exist
+     */
+    public void show(String command){
+        String helpText = commands.get(command);
+        if(helpText == null){
+            System.out.println(command + " isn't a command.");
+        } else {
+            System.out.println(helpText);
+        }
     }
 }
