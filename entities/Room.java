@@ -30,12 +30,18 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      * @param context An instance of the Game class
+     * @Deprecated Use other constructor instead
      */
     public Room(String description, Game context) 
     {
-        this.description = description;
-        exits = new HashMap<String, String>();
+        this(context, tempDepFix(description));
+    }
+    private static final HashMap<String, String> tempDepFix(String s){HashMap<String, String> h = new HashMap<String, String>(); h.put("description", s); return h;}
+    
+    public Room(Game context, HashMap<String, String> attributes){
         this.context = context;
+        this.description = attributes.remove("description");
+        exits = attributes;
     }
 
     /**

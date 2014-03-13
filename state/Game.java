@@ -60,18 +60,13 @@ public class Game {
      * Create all the rooms and link their exits together.
      */
     private void createRooms() {
-        String[] validDirections = {"north", "east", "south", "west", "upstairs", "downstairs"};
-        for (String s : getKvFiles(".\\rooms")) {
+        for (String s : getKvFiles("./rooms")) {
             HashMap<String, String> roomAttributes = KvReader.readFile(s);
-            rooms.put(roomAttributes.get("id"), new Room(roomAttributes.get("description"), this));
-            for (String exit : validDirections) {
-                    if (exit != null) {
-                     rooms.get(roomAttributes.get("id")).setExit(exit, roomAttributes.get(exit));
-                    }
-                }
-            }
-        String currentRoom = "Empty Room 1";
+            rooms.put(roomAttributes.remove("id"), new Room(this, roomAttributes));
         }
+        
+        currentRoom = "Empty Room 1";
+    }
         /*
         Room outside, theater, pub, lab, office;
 
