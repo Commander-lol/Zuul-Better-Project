@@ -1,6 +1,7 @@
 package state;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
 
@@ -34,14 +35,15 @@ public class Game {
     private String currentRoom;
     private Inventory bag;
     private Scroll scroll;
-    private HashMap <String, Room> rooms; 
+    private HashMap<String, Room> rooms;
+    private ArrayList<String> previousRooms;
     
     /**
      * Create the game and initialise its internal map.
      */
     public Game() {
-        
         rooms = new HashMap <String, Room>(); 
+        previousRooms = new ArrayList<String>();
         createRooms();
         parser = new Parser();
         for (String s : getKvFiles(".")) {
@@ -138,9 +140,34 @@ public class Game {
         if (commandWord.equals("help")) {
             printHelp();
         } else if (commandWord.equals("go")) {
-            goRoom(command);
+            parseRoom(command);
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
+        } else if(commandWord.equals("back")){
+            int backage = 0;
+            if(!command.hasSecondWord()){
+                backage = 1;
+            } else {
+                String sWord = command.getSecondWord();
+                try {
+                    backage = Integer.parseInt(sWord);
+                } catch(Exception e) {
+                    System.out.println("You can't go back " + sWord + " rooms.");
+                    return false;
+                }
+            }
+            if(previousRooms.size() < backage) {
+                System.out.println("You can't go back " + backage + " rooms.");
+                return false;
+            }
+            ArrayList<String> roomsToGo = new ArrayList<String>(backage);
+            for (int i = 1; i <= backage; i++) {
+                roomsToGo.add(previousRooms.get(previousRooms.size()-i));
+            }
+            for (int i = 0; i < roomsToGo.size()-1; i ++) {
+                previousRooms.add(roomsToGo.remove(i));
+            }
+            goRoom(roomsToGo.remove(0));
         } else if (commandWord.equals("view")){
             if(command.hasSecondWord()){
                 String sWord = command.getSecondWord();
@@ -179,10 +206,11 @@ public class Game {
     }
 
     /**
-     * Try to in to one direction. If there is an exit, enter the new room,
-     * otherwise print an error message.
+     * Try to move in one direction. Parses the command to look for various factors
+     * including existence of a direction, and the presence of an exit in that direction.
+     * If it is possible to move in that direction, it will invoke goRoom to do so
      */
-    private void goRoom(Command command) {
+    private void parseRoom(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
@@ -197,9 +225,18 @@ public class Game {
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
+            goRoom(nextRoom);
+        }
+    }
+    
+    /**
+     * Store the current room in the list of previous rooms and set the current room to 
+     * the given String before printing out the description of the new room and 
+     */
+    private void goRoom(String nextRoom) {
+            previousRooms.add(currentRoom);
             currentRoom = nextRoom;
             System.out.println(rooms.get(currentRoom).getLongDescription());
-        }
     }
 
     /**
