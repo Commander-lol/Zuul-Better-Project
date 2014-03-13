@@ -1,5 +1,8 @@
 package command;
 
+import util.KvReader;
+
+import java.util.HashMap;
 /**
  * This class is part of the "Go Sunset" application. "Go Sunset" is a
  * very simple, text based adventure game.
@@ -12,37 +15,33 @@ package command;
  */
 
 public class CommandWords {
-	// a constant array that holds all valid command words
-	private static final String[] validCommands = { "go", "quit", "help", "view", "back", "take", "use", "give", "combine"};
+    // a constant array that holds all valid command words
+    // validCommands = { "go", "quit", "help", "view", "back", "take", "use", "give", "combine"};
+    private HashMap<String, String> helpText;
+    /**
+     * Constructor - initialise the command words.
+     */
+    public CommandWords() {
+        helpText = new HashMap<String, String>();
+        helpText = KvReader.readFile("help.kv");
+    }
 
-	/**
-	 * Constructor - initialise the command words.
-	 */
-	public CommandWords() {
-		// nothing to do at the moment...
-	}
+    /**
+     * Check whether a given String is a valid command word.
+     * 
+     * @return true if it is, false if it isn't.
+     */
+    public boolean isCommand(String aString) {
+        return helpText.keySet().contains(aString);
+    }
 
-	/**
-	 * Check whether a given String is a valid command word.
-	 * 
-	 * @return true if it is, false if it isn't.
-	 */
-	public boolean isCommand(String aString) {
-		for (int i = 0; i < validCommands.length; i++) {
-			if (validCommands[i].equals(aString))
-				return true;
-		}
-		// if we get here, the string was not found in the commands
-		return false;
-	}
-
-	/**
-	 * Print all valid commands to System.out.
-	 */
-	public void showAll() {
-		for (String command : validCommands) {
-			System.out.print("▶ " + command + "  ");
-		}
-		System.out.println();
-	}
+    /**
+     * Print all valid commands to System.out.
+     */
+    public void showAll() {
+        for (String command : helpText.keySet()) {
+            System.out.print("▶ " + command + "  ");
+        }
+        System.out.println();
+    }
 }
