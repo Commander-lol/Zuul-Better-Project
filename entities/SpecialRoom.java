@@ -27,6 +27,13 @@ public class SpecialRoom extends Room
         super(description, context);
     }
     
+    public SpecialRoom(Game context, HashMap<String, String> attributes){
+        super(context, attributes);
+        // Riddle parts are still going to be in the HashMap, remove them
+        this.riddle = this.exits.remove("riddle");
+        this.riddleAnswer = this.exits.remove("answer");
+    }
+    
     /**
      * @return The riddle for the current special room.
      */
