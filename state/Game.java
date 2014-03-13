@@ -153,31 +153,9 @@ public class Game {
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         } else if(commandWord.equals("back")){
-            int backage = 0;
-            if(!command.hasSecondWord()){
-                backage = 1;
-            } else {
-                String sWord = command.getSecondWord();
-                try {
-                    backage = Integer.parseInt(sWord);
-                } catch(Exception e) {
-                    System.out.println("You can't go back " + sWord + " rooms.");
-                    return false;
-                }
+            if(!goBack(command)){
+                System.out.println("You can't go back that much!");
             }
-            if(previousRooms.size() < backage) {
-                System.out.println("You can't go back " + backage + " rooms.");
-                return false;
-            }
-            ArrayList<String> roomsToGo = new ArrayList<String>(backage);
-            for (int i = 1; i <= backage; i++) {
-                roomsToGo.add(previousRooms.get(previousRooms.size()-i));
-            }
-            for (int i = 0; i < roomsToGo.size()-1; i ++) {
-                previousRooms.add(roomsToGo.remove(i));
-            }
-            goRoom(roomsToGo.remove(0));
-
         } else if (commandWord.equals("view")){
             if(command.hasSecondWord()){
                 String sWord = command.getSecondWord();
@@ -249,6 +227,39 @@ public class Game {
             System.out.println(rooms.get(currentRoom).getLongDescription());
     }
 
+    /**
+     * Sends the player back N rooms, where N is any positive integer less than the total number of 
+     * rooms traversed so far. If no number is specified, it is assumed to mean 1 room
+     * 
+     * @return A boolean value stating whether or not the player could succesfully go back that many
+     * rooms
+     */
+    private boolean goBack(Command command){
+        int backage = 0;
+        if(!command.hasSecondWord()){
+            backage = 1;
+        } else {
+            String sWord = command.getSecondWord();
+            try {
+                backage = Integer.parseInt(sWord);
+            } catch(Exception e) {
+                return false;
+            }
+        }
+        if(previousRooms.size() < backage) {
+            return false;
+        }
+        ArrayList<String> roomsToGo = new ArrayList<String>(backage);
+        for (int i = 1; i <= backage; i++) {
+            roomsToGo.add(previousRooms.get(previousRooms.size()-i));
+        }
+        for (int i = 0; i < roomsToGo.size()-1; i ++) {
+            previousRooms.add(roomsToGo.remove(i));
+        }
+        goRoom(roomsToGo.remove(0));
+        return true;
+    }
+    
     /**
      * "Quit" was entered. Check the rest of the command to see whether we
      * really quit the game.
