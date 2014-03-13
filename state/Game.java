@@ -62,6 +62,7 @@ public class Game {
     private void createRooms() {
         for (String s : getKvFiles("./rooms")) {
             HashMap<String, String> roomAttributes = KvReader.readFile(s);
+            System.out.println(roomAttributes.get("description"));
             rooms.put(roomAttributes.remove("id"), new Room(this, roomAttributes));
         }
         

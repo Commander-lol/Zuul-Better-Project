@@ -41,7 +41,8 @@ public class KvReader {
                 if(kv.length!=2){// Malformed line, ignore it
                     continue;
                 }
-                returnMap.put(kv[0].trim(), kv[1].trim());
+                
+                returnMap.put(KvReader.cleanText(kv[0]), KvReader.cleanText(kv[1]));
             }
         } catch(IOException e) {
             return null;
@@ -57,4 +58,7 @@ public class KvReader {
         return returnMap;
     }
     
+    private static String cleanText(String input){
+        return input.trim().replaceAll("\\\\n", "\n").replaceAll("⇥", "\t");
+    }
 }
