@@ -120,10 +120,21 @@ public class Game {
      * Print out the opening message for the player.
      */
     private void printWelcome() {
+        System.out.println("𝗚𝗢 𝗦𝗨𝗡𝗦𝗘𝗧");
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out
-                .println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("The last dregs of your beer finished, \n" + 
+                            "you stumble out to the front of the Isembard Kingdom Brunel, \n" +
+                            "noticing the setting sun as you go. It is late, the night \n" + 
+                            "is dark and full of terrors. As you hurry homeward towards \n" + 
+                            "Gunwarf Quays you notice a shimmer in the air - as you enter \n" + 
+                            "the vicinity of Spinnaker Tower, you start to see the ground \n" + 
+                            "around you shake. Rocks fly into the air, shards of glass falling \n" + 
+                            "between them like silvered daggers in the darkness. In font of \n" + 
+                            "your very eyes, the metal beams ahead of you wrench themselves \n" + 
+                            "free from the dirt and a stone tower rises from the ground in \n" + 
+                            "its place. A large wooden door assaults your eyeballs with it's \n" +
+                            "sensuous oaky texture");
+        System.out.println();
         System.out.println("Type 'help' if you need help.");
         System.out.println();
         System.out.println(rooms.get(currentRoom).getLongDescription());
@@ -142,7 +153,6 @@ public class Game {
         if (command.isUnknown()) {
             System.out.println("I don't know what you mean...");
             return false;
-           
         }
 
         String commandWord = command.getCommandWord();
