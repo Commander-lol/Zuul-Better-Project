@@ -59,6 +59,7 @@ public class KvReader {
     }
     
     private static String cleanText(String input){
+        //Yes this is a one liner, no it can't be split into multiple lines (Multi-line causes bugs)
         return input.trim().replaceAll("\\\\n", "\n").replaceAll("⇥", "\t");
     }
 }
