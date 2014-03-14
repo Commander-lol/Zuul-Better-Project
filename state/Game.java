@@ -15,6 +15,7 @@ import state.Scroll;
 import util.KvReader;
 import util.Parser;
 import java.util.ArrayList;
+import entities.SpecialRoom;
 
 /**
  * This class is the main class of the "Go Sunset" application.
@@ -40,6 +41,7 @@ public class Game {
     private Scroll scroll;
     private HashMap<String, Room> rooms;
     private ArrayList<String> previousRooms;
+    
 
     /**
      * Create the game and initialise its internal map.
@@ -63,7 +65,13 @@ public class Game {
         for (String s : getKvFiles("./rooms")) {
             HashMap<String, String> roomAttributes = KvReader.readFile(s);
             System.out.println(roomAttributes.get("description"));
-            rooms.put(roomAttributes.remove("id"), new Room(this, roomAttributes));
+            if (roomAttributes.get("riddle") == null) {
+            rooms.put(roomAttributes.remove("id"), new SpecialRoom(this, roomAttributes));
+            } 
+            else { 
+            
+            rooms.put(roomAttributes.remove("id"), new Room(this, roomAttributes));}
+            
         }
         
         currentRoom = "Empty Room 1";
