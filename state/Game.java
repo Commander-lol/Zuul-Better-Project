@@ -40,6 +40,7 @@ public class Game {
     private Scroll scroll;
     private HashMap<String, Room> rooms;
     private ArrayList<String> previousRooms;
+    private HashMap<String, Item> items;
 
     /**
      * Create the game and initialise its internal map.
@@ -176,7 +177,8 @@ public class Game {
                 String sWord = command.getSecondWord();
                 switch(sWord){
                 case "bag":
-                    bag.printInventory();
+                    String context = "In the bag";
+                    bag.printInventory(context);
                     break;
                 case "scroll":
                     scroll.printScroll();

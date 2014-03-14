@@ -31,9 +31,13 @@ public class Inventory {
      * Constructor for objects of class Inventory
      */
     public Inventory() {
+        this(300);
+    }
+    
+    public Inventory(float weight) {
         items = new ArrayList<>();
         currentWeight = 0;
-        maxWeight = 300;
+        maxWeight = weight;
     }
     
     /**
@@ -98,11 +102,11 @@ public class Inventory {
      * If available, prints a list of the items in the inventory.
      * If the inventory is empty, prints a message informing the player.
      */
-    public void printInventory(){
+    public void printInventory(String context){
         if(items.size() == 0){
-            System.out.println("Your bag is empty");
+            System.out.println(context + " there is nothing");
         } else {
-            System.out.println("In your bag you have: ");
+            System.out.println(context +" there is: ");
             for(Item i : items){
                 System.out.println("- " + Phraser.addDeterminer(i.getName()));
             }

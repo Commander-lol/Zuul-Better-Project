@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.params=filePath
 comment0.target=java.util.HashMap\ readFile(java.lang.String)
-comment0.text=\n\ Reads\ the\ given\ file\ into\ a\ HashMap\ object\ and\ returns\ it.\n\ @param\ filePath\ The\ path\ to\ the\ file\ that\ will\ be\ read\ and\ returned\n\ @return\ A\ HashMap\ object\ populated\ with\ the\ contents\ of\ the\ file.\ Will\n\ \ return\ null\ if\ the\ file\ does\ not\ exist\ or\ throws\ an\ error\ on\ read.\n
+comment0.text=\r\n\ Reads\ the\ given\ file\ into\ a\ HashMap\ object\ and\ returns\ it.\r\n\ @param\ filePath\ The\ path\ to\ the\ file\ that\ will\ be\ read\ and\ returned\r\n\ @return\ A\ HashMap\ object\ populated\ with\ the\ contents\ of\ the\ file.\ Will\r\n\ \ return\ null\ if\ the\ file\ does\ not\ exist\ or\ throws\ an\ error\ on\ read.\r\n
 comment1.params=input
 comment1.target=java.lang.String\ cleanText(java.lang.String)
 numComments=2

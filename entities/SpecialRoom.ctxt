@@ -1,11 +1,13 @@
 #BlueJ class context
 comment0.params=description\ context
 comment0.target=SpecialRoom(java.lang.String,\ state.Game)
-comment0.text=\n\ Creates\ a\ SpecialRoom\ class.\ Takes\ information\ from\ the\ Room\ parent\ class.\n\ \n\ @param\ description\ The\ room's\ description.\n\ @param\ context\ An\ instance\ of\ the\ Game\ class.\n
-comment1.params=
-comment1.target=java.lang.String\ getRiddle()
-comment1.text=\n\ @return\ The\ riddle\ for\ the\ current\ special\ room.\n
-comment2.params=userAnswer
-comment2.target=boolean\ isAnswerCorrect(java.lang.String)
-comment2.text=\n\ Checks\ whether\ the\ answer\ entered\ by\ the\ user\ is\ equal\ to\ the\ actual\ answer\n\ of\ the\ riddle.\n\ \n\ @param\ userAnswer\ The\ answer\ entered\ by\ the\ User.\n\ @return\ Whether\ the\ answers\ were\ euqal\ or\ not.\n
-numComments=3
+comment0.text=\r\n\ Creates\ a\ SpecialRoom\ class.\ Takes\ information\ from\ the\ Room\ parent\ class.\r\n\ \r\n\ @param\ description\ The\ room's\ description.\r\n\ @param\ context\ An\ instance\ of\ the\ Game\ class.\r\n
+comment1.params=context\ attributes
+comment1.target=SpecialRoom(state.Game,\ java.util.HashMap)
+comment2.params=
+comment2.target=java.lang.String\ getRiddle()
+comment2.text=\r\n\ @return\ The\ riddle\ for\ the\ current\ special\ room.\r\n
+comment3.params=userAnswer
+comment3.target=boolean\ isAnswerCorrect(java.lang.String)
+comment3.text=\r\n\ Checks\ whether\ the\ answer\ entered\ by\ the\ user\ is\ equal\ to\ the\ actual\ answer\r\n\ of\ the\ riddle.\r\n\ \r\n\ @param\ userAnswer\ The\ answer\ entered\ by\ the\ User.\r\n\ @return\ Whether\ the\ answers\ were\ euqal\ or\ not.\r\n
+numComments=4
