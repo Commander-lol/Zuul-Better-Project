@@ -4,7 +4,9 @@ import java.util.Set;
 import java.util.HashMap;
 
 import state.Game;
-
+import entities.Item;
+import java.util.ArrayList;
+import state.Inventory;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -24,6 +26,8 @@ public class Room
     protected String description;
     protected HashMap<String, String> exits;        // stores exits of this room.
     protected Game context;
+    protected Inventory roomInventory;
+
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -42,6 +46,7 @@ public class Room
         this.context = context;
         this.description = attributes.remove("description");
         exits = attributes;
+		roomInventory = new Inventory();
     }
 
     /**
@@ -99,5 +104,20 @@ public class Room
     {
         return exits.get(direction);
     }
+
+	public void addItem(Item item) {
+		roomInventory.addItem(item);
+	   }
+
+	public void removeItem(String itemName) {
+		
+		roomInventory.removeItem(itemName);
+        
+	   }
+	   
+	public void printItemList(){
+	    String context = "In the room";
+	    roomInventory.printInventory(context);
+	   }
 }
 
