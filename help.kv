@@ -1,7 +1,18 @@
-go : Move in a certain direction
+go : Move in a certain direction\ngo <direction>
+go$ : 1
 quit : End the game
-help : Display the help for a command
-view : Have a look at an item
-back : Go back a certain number of rooms
-take : Pick up an item in the current room
-combine : Mix two items together
+quit$ : 0
+help : Display the help for a command\nhelp\nhelp <Command>
+help$ : 1
+view : Have a look at an item\nview <Item>
+view$ : 1
+back : Go back a certain number of rooms\nback\nback <N>
+back$ : 1
+take : Pick up an item in the current room\ntake <Item>
+take$ : 3
+drop : Place an item into the current room\ndrop <Item>
+drop$ : 3
+combine : Mix two items together\ncombine <Item> <Item>
+combine$ : 1^1
+give : Give an item to an NPC\ngive <NPC> <Item>
+give$ : 1^1

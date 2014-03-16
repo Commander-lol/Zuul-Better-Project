@@ -87,8 +87,7 @@ public class Room
     private String getExitString()
     {
         String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
+        for(String exit : exits.keySet()) {
             returnString += " " + exit;
         }
         return returnString;
@@ -105,10 +104,18 @@ public class Room
         return exits.get(direction);
     }
 
+    /**
+     * Puts an item into the inventory of the room
+     * @param item The item to be placed in the room
+     */
     public void addItem(Item item) {
         roomInventory.addItem(item);
     }
 
+    /**
+     * Take an item out of the room's inventory and return it
+     * @param itemName the name of the item to be removed from the 
+     */
     public Item removeItem(String itemName) {
         return roomInventory.removeItem(itemName);
     }
@@ -116,7 +123,7 @@ public class Room
         return roomInventory.getItem(itemName);
     }
        
-    public void printItemList(){
+    public void printItems(){
         String context = "In the room";
         roomInventory.printInventory(context);
     }

@@ -13,7 +13,6 @@ import entities.Room;
 import entities.NPC;
 import command.Command;
 import state.Inventory;
-import state.Scroll;
 import util.KvReader;
 import util.Parser;
 import java.util.ArrayList;
@@ -71,7 +70,6 @@ public class Game {
         }
         for (String s : roomPaths) {
             HashMap<String, String> roomAttributes = KvReader.readFile(s);
-            System.out.println(roomAttributes.get("description"));
             if (roomAttributes.get("riddle") == null) {
                 rooms.put(roomAttributes.remove("id"), new Room(this, roomAttributes));
             } else {
@@ -81,7 +79,9 @@ public class Game {
         
         currentRoom = "Empty Room 1";
     }
-    private void createNpcs(){}
+    private void createNpcs(){
+        
+    }
     private void createItems() {
         
     }
@@ -142,10 +142,10 @@ public class Game {
             return false;
         }
 
-        String commandWord = command.getCommandWord();
+        String commandWord = command.getOperator();
         if (commandWord.equals("help")) {
-           if(command.hasSecondWord()){
-               printHelp(command.getSecondWord());
+           if(command.hasNthWord(2)){
+               printHelp(command.getNthSegment(1));
             } else {
                printHelp();
             }
@@ -158,7 +158,7 @@ public class Game {
                 System.out.println("You can't go back that much!");
             }
         } else if (commandWord.equals("view")){
-            String sWord = command.getSecondWord();
+            String sWord = command.getNthSegment(1);
             if(sWord.equals("bag")){
                 bag.printInventory("In the bag");
             } else {
@@ -204,13 +204,13 @@ public class Game {
      * If it is possible to move in that direction, it will invoke goRoom to do so
      */
     private void parseRoom(Command command) {
-        if (!command.hasSecondWord()) {
+        if (!command.hasNthWord(2)) {
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
             return;
         }
 
-        String direction = command.getSecondWord();
+        String direction = command.getNthSegment(1);
 
         // Try to leave current room.
         String nextRoom = rooms.get(currentRoom).getExit(direction);
@@ -227,9 +227,9 @@ public class Game {
      * the given String before printing out the description of the new room and 
      */
     private void goRoom(String nextRoom) {
-            previousRooms.add(currentRoom);
-            currentRoom = nextRoom;
-            System.out.println(rooms.get(currentRoom).getLongDescription());
+        previousRooms.add(currentRoom);
+        currentRoom = nextRoom;
+        System.out.println(rooms.get(currentRoom).getLongDescription());
     }
 
     /**
@@ -241,13 +241,13 @@ public class Game {
      */
     private boolean goBack(Command command){
         int backage = 0;
-        if(!command.hasSecondWord()){
+        if(!command.hasNthWord(2)){
             backage = 1;
         } else {
-            String sWord = command.getSecondWord();
+            String sWord = command.getNthSegment(1);
             try {
                 backage = Integer.parseInt(sWord);
-            } catch(Exception e) {
+            } catch(NumberFormatException e) {
                 return false;
             }
         }
@@ -272,7 +272,7 @@ public class Game {
      * @return true, if this command quits the game, false otherwise.
      */
     private boolean quit(Command command) {
-        if (command.hasSecondWord()) {
+        if (command.hasNthWord(2)) {
             System.out.println("Quit what?");
             return false;
         } else {
