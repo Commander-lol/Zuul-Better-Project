@@ -1,4 +1,4 @@
-﻿package state;
+package state;
 
 import command.Command;
 
@@ -6,9 +6,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
+import java.io.IOException;
 
 import entities.Item;
 import entities.Room;
+import entities.NPC;
 import command.Command;
 import state.Inventory;
 import state.Scroll;
@@ -38,12 +40,9 @@ public class Game {
     private Parser parser;
     private String currentRoom;
     private Inventory bag;
-    private Scroll scroll;
+    private HashMap<String, NPC> npcs;
     private HashMap<String, Room> rooms;
     private ArrayList<String> previousRooms;
-
-    private HashMap<String, Item> items;
-  
 
     /**
      * Create the game and initialise its internal map.
@@ -51,64 +50,41 @@ public class Game {
     public Game() {
         previousRooms = new ArrayList <String>();
         rooms = new HashMap<String, Room>(); 
-
-        createRooms();
         parser = new Parser();
         bag = new Inventory();
-        bag.addItem(new Item(10f, "Apple"));
-        bag.addItem(new Item(0f, "Scroll"));
-        scroll = new Scroll();
+        
+        createRooms();
+        createNpcs();
+        createItems();
     }
 
     /**
      * Create all the rooms and link their exits together.
      */
     private void createRooms() {
-        for (String s : getKvFiles("./rooms")) {
+        HashSet<String> roomPaths;
+        try {
+            roomPaths = KvReader.getKvFiles("./rooms");
+        } catch (IOException e){
+            e.printStackTrace(System.err);
+            return;
+        }
+        for (String s : roomPaths) {
             HashMap<String, String> roomAttributes = KvReader.readFile(s);
             System.out.println(roomAttributes.get("description"));
             if (roomAttributes.get("riddle") == null) {
-            rooms.put(roomAttributes.remove("id"), new SpecialRoom(this, roomAttributes));
-            } 
-            else { 
-            
-            rooms.put(roomAttributes.remove("id"), new Room(this, roomAttributes));}
-            
+                rooms.put(roomAttributes.remove("id"), new Room(this, roomAttributes));
+            } else {
+                rooms.put(roomAttributes.remove("id"), new SpecialRoom(this, roomAttributes));
+            }
         }
         
         currentRoom = "Empty Room 1";
     }
-        /*
-        Room outside, theater, pub, lab, office;
-
-        // create the rooms
-        outside = new Room("outside the main entrance of the university", this);
-        theater = new Room("in a lecture theater", this);
-        pub = new Room("in the campus pub", this);
-        lab = new Room("in a computing lab", this);
-        office = new Room("in the computing admin office", this);
+    private void createNpcs(){}
+    private void createItems() {
         
-        rooms.put("outside", outside);
-        rooms.put("theater", theater);
-        rooms.put("pub", pub);
-        rooms.put("lab", lab);
-        rooms.put("office", office);
-        
-        // initialise room exits
-        outside.setExit("east", "theater");
-        outside.setExit("south", "lab");
-        outside.setExit("west", "pub");
-
-        theater.setExit("west", "outside");
-
-        pub.setExit("east", "outside");
-
-        lab.setExit("north", "outside");
-        lab.setExit("east", "office");
-
-        office.setExit("west", "lab");
-
-        currentRoom = "outside"; // start game outside
+    }
 
     /**
      * Main play routine. Loops until end of play.
@@ -182,23 +158,11 @@ public class Game {
                 System.out.println("You can't go back that much!");
             }
         } else if (commandWord.equals("view")){
-            if(command.hasSecondWord()){
-                String sWord = command.getSecondWord();
-                switch(sWord){
-                case "bag":
-                    String context = "In the bag";
-                    bag.printInventory(context);
-                    break;
-                case "scroll":
-                    scroll.printScroll();
-                    break;
-                default:
-                    if(bag.contains(sWord)){
-                        bag.getItem(sWord).printImage();
-                    } else {
-                        System.out.println("");
-                    }
-                }
+            String sWord = command.getSecondWord();
+            if(sWord.equals("bag")){
+                bag.printInventory("In the bag");
+            } else {
+                printItem(sWord);
             }
         }
         // else command not recognised.
@@ -227,6 +191,12 @@ public class Game {
         parser.showCommand(command);
     }
     
+    private void printItem(String itemName){
+        Item i = null;
+        if (((i = bag.getItem(itemName)) != null) || ((i = rooms.get(currentRoom).getItem(itemName)) != null)){
+            i.printImage();
+        }
+    }
     
     /**
      * Try to move in one direction. Parses the command to look for various factors
@@ -308,35 +278,5 @@ public class Game {
         } else {
             return true; // signal that we want to quit
         }
-    }
-
-    /**
-     * Recursively searches the given directory for any files ending with '.kv'
-     * and adds their paths to a set
-     * 
-     * @param dir
-     *            The directory path of the directory to search
-     * @return A HashSet object containing the paths of all the .kv files that
-     *         were found in the given directory
-     */
-    private HashSet<String> getKvFiles(String dir) {
-        File rootDir = new File(dir);
-        HashSet<String> filePaths = new HashSet<>();
-
-        if (rootDir.isDirectory()) {
-            for (File f : rootDir.listFiles()) {
-                if (f.isDirectory()) {
-                    filePaths.addAll(getKvFiles(f.getPath()));
-                } else {
-                    if (f.getPath().endsWith(".kv")) {
-                        filePaths.add(f.getPath());
-                    }
-                }
-            }
-        } else {
-            filePaths.add(dir);
-        }
-
-        return filePaths;
     }
 }

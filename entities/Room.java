@@ -46,7 +46,7 @@ public class Room
         this.context = context;
         this.description = attributes.remove("description");
         exits = attributes;
-		roomInventory = new Inventory();
+        roomInventory = new Inventory(30000);
     }
 
     /**
@@ -105,19 +105,20 @@ public class Room
         return exits.get(direction);
     }
 
-	public void addItem(Item item) {
-		roomInventory.addItem(item);
-	   }
+    public void addItem(Item item) {
+        roomInventory.addItem(item);
+    }
 
-	public void removeItem(String itemName) {
-		
-		roomInventory.removeItem(itemName);
-        
-	   }
-	   
-	public void printItemList(){
-	    String context = "In the room";
-	    roomInventory.printInventory(context);
-	   }
+    public Item removeItem(String itemName) {
+        return roomInventory.removeItem(itemName);
+    }
+    public Item getItem(String itemName){
+        return roomInventory.getItem(itemName);
+    }
+       
+    public void printItemList(){
+        String context = "In the room";
+        roomInventory.printInventory(context);
+    }
 }
 

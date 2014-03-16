@@ -14,7 +14,6 @@ import state.Game;
 public class SpecialRoom extends Room
 {
     private String riddle;
-    private String riddleAnswer;
     private String answer;
     
     /**
@@ -27,11 +26,17 @@ public class SpecialRoom extends Room
         super(description, context);
     }
     
+    /**
+     * Creates an instance of SpecialRoom, a room that contains a riddle that should be answered and extends the Room class
+     * 
+     * @param context The Game object that the room belongs to
+     * @param attributes The attributes that make up the game
+     */
     public SpecialRoom(Game context, HashMap<String, String> attributes){
         super(context, attributes);
         // Riddle parts are still going to be in the HashMap, remove them
         this.riddle = this.exits.remove("riddle");
-        this.riddleAnswer = this.exits.remove("answer");
+        this.answer = this.exits.remove("answer");
     }
     
     /**
@@ -45,20 +50,10 @@ public class SpecialRoom extends Room
      * Checks whether the answer entered by the user is equal to the actual answer
      * of the riddle.
      * 
-     * @param userAnswer The answer entered by the User.
+     * @param answer The answer entered by the User.
      * @return Whether the answers were euqal or not.
      */
-    public boolean isAnswerCorrect(String userAnswer) {
-        boolean answerCorrect;
-        answer = userAnswer;
-        
-        if (answer == riddleAnswer) {
-            answerCorrect = true;
-        }
-        else {
-            answerCorrect = false;
-        }
-        
-        return answerCorrect;
+    public boolean isAnswerCorrect(String answer) {
+        return this.answer.equalsIgnoreCase(answer);
     }
 }
