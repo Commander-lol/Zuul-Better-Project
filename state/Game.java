@@ -34,7 +34,13 @@ import util.Parser;
  * commands that the parser returns.
  * 
  * @author Michael Kölling and David J. Barnes
- * @version 2011.08.08
+ * 
+ * @author Louis Capitanchik
+ * @author Joshua Mulcock
+ * @author Alice Charterton
+ * @author John Stones
+ * 
+ * @version 2014.03.17
  */
 
 public class Game {
@@ -93,10 +99,13 @@ public class Game {
         currentRoom = "Empty Room 1";
     }
     
+    /**
+     * Used to get the items for the game when the game is set up, and puts them in the room's inventory that they begin with
+     */
     private void createItems() {
         HashSet<String> itemPaths;
         try {
-            itemPaths = KvReader.getKvFiles("./items");
+            itemPaths = KvReader.getKvFiles("./items/");
         } catch (IOException e){
             e.printStackTrace(System.err);
             return;
@@ -127,6 +136,9 @@ public class Game {
         }
     }
     
+    /**
+     * Creates the NPCs and gets the information when the game is setup.
+     */
     private void createNpcs(){
         HashSet<String> npcPaths;
         try {
@@ -208,9 +220,17 @@ public class Game {
         return orphanedItems.remove(itemName);
     }
     
+    /**
+    * Gets the room with the given identifier
+    * @param room The string that identifies the room to retrieve
+    * @return The room with the given name, or null of non existant
+    */
+
     public Room getCurrentRoom(String room){
         return rooms.get(room);
     }
+    
+    
     /**
      * Given a command, process (that is: execute) the command.
      * 
@@ -378,6 +398,10 @@ public class Game {
         }
     }
     
+    /**
+     * This is the method used for the trading aspect of the Game.
+     * It checks to see if an NPC is in the current room and also checks that a valid item is trying to be traded.
+     */
     private void giveItem(Command command){
         NPC npc = null;
         
@@ -409,6 +433,11 @@ public class Game {
             }
         }
     }
+    
+    /**
+     * This is the method used for answering the riddles in the Special Rooms.
+     * It also ends the game if the given answer is wrong three times
+     */
     
     private boolean answerRiddle(Command command){
         Room room = rooms.get(currentRoom);
@@ -492,6 +521,9 @@ public class Game {
         }
     }
     
+    /**
+     * This is the method used for fighting the boss. It checks to see if the command is right and that the player has the necessary items.
+     */
     private boolean attemptWin(Command command){
         if (!command.hasNthWord(2)) {
             System.out.println("Go where?");

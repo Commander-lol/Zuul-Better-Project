@@ -1,4 +1,5 @@
 #BlueJ class context
 comment0.params=baseString
 comment0.target=java.lang.String\ addDeterminer(java.lang.String)
+comment0.text=\r\n\ Used\ to\ determine\ whether\ the\ sting\ starts\ with\ the\ a\ vowel,\ \r\n\ by\ trimming\ the\ baseString\ to\ one\ letter\ and\ seeing\ if\ it\ matches\r\n\ any\ of\ the\ HashSet\r\n\ \r\n\ @param\ baseString\ is\ the\ string\ containing\ the\ items\ name\r\n\ @return\ 'an\ '\ and\ the\ baseString\ if\ it\ begins\ with\ a\ vowel\r\n\ @return\ 'a\ '\ and\ the\ baseString\ if\ it\ doesnt\ being\ with\ a\ vowel\r\n
 numComments=1

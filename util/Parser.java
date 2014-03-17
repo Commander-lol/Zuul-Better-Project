@@ -6,8 +6,7 @@ import command.Command;
 import command.CommandWords;
 
 /**
- * This class is part of the "World of Zuul" application. "World of Zuul" is a
- * very simple, text based adventure game.
+ * This class is part of the "Go Sunset" application, adapted from the "World of Zuul" application.
  * 
  * This parser reads user input and tries to interpret it as an "Adventure"
  * command. Every time it is called it reads a line from the terminal and tries
@@ -19,7 +18,12 @@ import command.CommandWords;
  * a command object that is marked as an unknown command.
  * 
  * @author Michael Kölling and David J. Barnes
- * @version 2011.08.08
+ *  @author Louis Capitanchik
+ * @author Joshua Mulcock
+ * @author Alice Charterton
+ * @author John Stones
+ * 
+ * @version 2014.03.05
  */
 public class Parser {
     private CommandWords commands; // holds all valid command words

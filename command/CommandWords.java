@@ -12,7 +12,12 @@ import java.util.Map.Entry;
  * used to recognise commands as they are typed in.
  * 
  * @author Michael Kölling and David J. Barnes
- * @version 2011.08.08
+ *  @author Louis Capitanchik
+ * @author Joshua Mulcock
+ * @author Alice Charterton
+ * @author John Stones
+ 
+ * @version 2017.03.16
  */
 
 public class CommandWords {

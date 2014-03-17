@@ -15,6 +15,10 @@ import java.util.ArrayList;
 * of a weight and a name.
 *
 * @author Louis Capitanchik
+* @author Joshua Mulcock
+* @author Alice Charterton
+* @author John Stones
+* 
 * @version 2014/02/23
 */
 

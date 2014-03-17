@@ -20,6 +20,9 @@ import entities.Item;
 * Else it prints that the inventory is empty.
 *
 * @author Louis Capitanchik
+* @author Joshua Mulcock
+* @author Alice Charterton
+* @author John Stones
 * @version 2014/03/04
 */
 
