@@ -81,14 +81,23 @@ public void speak(){
 }
 
 public void act(){
-    HashMap<String, String> exits = context.getCurrentRoom().getExits();
-    String[] exitDirs = (String[])exits.keySet().toArray();
+    HashMap<String, String> exits = context.getCurrentRoom(currentRoom).getExits();
+    Set<String> exitSet = exits.keySet();
+    
+    int exitNum = 0;
     String exit = null;
     Random r = new Random();
     boolean valid = false;
     while(!valid){
-        int exitNum = r.nextInt(exitDirs.length);
-        exit = exitDirs[exitNum];
+        exitNum = r.nextInt(exitSet.size());
+        int c = 0;
+        for(String s : exitSet){
+            if(c == exitNum){
+                exit = s;
+                break;
+            }
+            c++;
+        }
         if(!exit.equals("upstairs") && !exit.equals("downstairs")){
             valid = true;
         }

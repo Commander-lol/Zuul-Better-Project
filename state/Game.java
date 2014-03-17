@@ -186,9 +186,6 @@ public class Game {
         while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
-            for(NPC npc : npcs.values()){
-                npc.act();
-            }
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
@@ -211,8 +208,8 @@ public class Game {
         return orphanedItems.remove(itemName);
     }
     
-    public Room getCurrentRoom(){
-        return rooms.get(currentRoom);
+    public Room getCurrentRoom(String room){
+        return rooms.get(room);
     }
     /**
      * Given a command, process (that is: execute) the command.
@@ -237,6 +234,7 @@ public class Game {
             }
         } else if (commandWord.equals("go")) {
             if(!isFinalRoom){
+                moveNpcs();
                 parseRoom(command);
             } else {
                 wantToQuit = attemptWin(command);
@@ -244,6 +242,7 @@ public class Game {
         } else if (commandWord.equals("quit")) {
             wantToQuit = true;
         } else if(commandWord.equals("back")){
+            moveNpcs();
             if(!goBack(command)){
                 System.out.println("You can't go back that much!");
             }
@@ -327,6 +326,12 @@ public class Game {
             } catch (FileNotFoundException e) {
                 System.out.println("Couldn't see " + Phraser.addDeterminer(itemName));
             }
+        }
+    }
+    
+    private void moveNpcs(){
+        for(NPC npc : npcs.values()){
+            npc.act();
         }
     }
     
