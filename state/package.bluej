@@ -18,6 +18,7 @@ dependency6.from=GameTest
 dependency6.to=Inventory
 dependency6.type=UsesDependency
 objectbench.height=76
+<<<<<<< HEAD
 objectbench.width=647
 package.editor.height=556
 package.editor.width=549
@@ -31,6 +32,21 @@ target1.editor.height=728
 target1.editor.width=683
 target1.editor.x=683
 target1.editor.y=0
+=======
+objectbench.width=937
+package.editor.height=545
+package.editor.width=839
+package.editor.x=323
+package.editor.y=114
+package.numDependencies=3
+package.numTargets=3
+package.showExtends=true
+package.showUses=true
+target1.editor.height=676
+target1.editor.width=1036
+target1.editor.x=817
+target1.editor.y=297
+>>>>>>> 21534876d50581baf2fd2e313d1f6404ebe3b16e
 target1.height=50
 target1.name=GameTest
 target1.naviview.expanded=false
@@ -38,6 +54,7 @@ target1.showInterface=false
 target1.type=UnitTestTargetJunit4
 target1.typeParameters=
 target1.width=80
+<<<<<<< HEAD
 target1.x=340
 target1.y=50
 target2.association=GameTest
@@ -45,6 +62,14 @@ target2.editor.height=728
 target2.editor.width=683
 target2.editor.x=683
 target2.editor.y=0
+=======
+target1.x=310
+target1.y=80
+target2.editor.height=700
+target2.editor.width=900
+target2.editor.x=134
+target2.editor.y=206
+>>>>>>> 21534876d50581baf2fd2e313d1f6404ebe3b16e
 target2.height=50
 target2.name=Game
 target2.naviview.expanded=true
