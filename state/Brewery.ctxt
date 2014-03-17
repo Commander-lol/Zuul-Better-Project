@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=context\ product
+comment0.target=Brewery(Game,\ entities.Item)
+comment0.text=\r\n\ Creates\ a\ new\ Brewery\ object\ that\ will\ be\ used\ to\ create\ the\ cure\ for\ leprosy\r\n
+comment1.params=itemName
+comment1.target=boolean\ needsItem(java.lang.String)
+comment1.text=\r\n\ Checks\ the\ brewery\ to\ see\ if\ the\ given\ item\ is\ part\ of\ the\ recipe\r\n\ @param\ itemName\ The\ name\ of\ the\ item\ being\ checked\r\n\ @return\ A\ boolean\ determining\ whether\ or\ not\ the\ item\ is\ part\ of\ the\ recipe\r\n
+comment2.params=item
+comment2.target=void\ throwInItem(entities.Item)
+comment2.text=\r\n\ Throw\ an\ item\ into\ the\ brewery.\ It\ will\ be\ lost\ regardless\ of\r\n\ whether\ or\ not\ it\ was\ required,\ but\ will\ not\ negatively\ affect\ the\ \r\n\ mixture\ if\ it\ wasn't\r\n\ @param\ item\ The\ item\ to\ throw\ into\ the\ brewery\r\n
+comment3.params=
+comment3.target=boolean\ isFinished()
+numComments=4

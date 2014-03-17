@@ -15,6 +15,8 @@ public class SpecialRoom extends Room
 {
     private String riddle;
     private String answer;
+    private Item reward;
+    private boolean complete = false;
     
     /**
      * Creates a SpecialRoom class. Takes information from the Room parent class.
@@ -46,14 +48,29 @@ public class SpecialRoom extends Room
         return riddle;
     }
     
+    public void setReward(Item reward){
+        this.reward = reward;
+    }
+    
+    /**
+     * Gets the item from this room that has been specified as the reward for succesfully completing the riddle
+     * @return The reward item for getting the correct answer
+     */
+    public Item getReward() {
+        return reward;
+    }
     /**
      * Checks whether the answer entered by the user is equal to the actual answer
      * of the riddle.
      * 
      * @param answer The answer entered by the User.
-     * @return Whether the answers were euqal or not.
+     * @return Whether the answers were equal or not.
      */
-    public boolean isAnswerCorrect(String answer) {
-        return this.answer.equalsIgnoreCase(answer);
+    public boolean attemptAnswer(String answer) {
+        return complete = this.answer.equalsIgnoreCase(answer);
+    }
+    
+    public boolean complete(){
+        return complete;
     }
 }

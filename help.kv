@@ -4,8 +4,8 @@ quit : End the game
 quit$ : 0
 help : Display the help for a command\nhelp\nhelp <Command>
 help$ : 1
-view : Have a look at an item\nview <Item>
-view$ : 1
+view : Have a look at an item\nview bag\nview <Item>
+view$ : 3
 back : Go back a certain number of rooms\nback\nback <N>
 back$ : 1
 take : Pick up an item in the current room\ntake <Item>
@@ -14,5 +14,7 @@ drop : Place an item into the current room\ndrop <Item>
 drop$ : 3
 combine : Mix two items together\ncombine <Item> <Item>
 combine$ : 1^1
-give : Give an item to an NPC\ngive <NPC> <Item>
-give$ : 1^1
+give : Give an item to an NPC\ngive <Item>
+give$ : 3
+answer : Attempt to answer a riddle in a room that has one\nanswer <Answer to the riddle>
+answer$ : 10

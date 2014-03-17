@@ -28,12 +28,16 @@ public class Inventory {
     private ArrayList<Item> items;
 
     /**
-     * Constructor for objects of class Inventory
+     * Creates a new inventory with a default maximum weight of 300 units
      */
     public Inventory() {
         this(300);
     }
     
+    /**
+     * Creates a new inventory with a specified maximum weight
+     * @param weight The maximum weights worth of objects that can be stored in this inventory
+     */
     public Inventory(float weight) {
         items = new ArrayList<>();
         currentWeight = 0;
@@ -66,12 +70,16 @@ public class Inventory {
      * @return the Item whose name matches the given string
      */
     public Item getItem(String itemName){
-        boolean found = false;
+        boolean done = false;
         int i = 0;
-        while(!found){
+        while(!done){
             Item current = items.get(i);
             if(current.getName().equalsIgnoreCase(itemName)){
                 return current;
+            }
+            i++;
+            if(i >= items.size()){
+                done = true;
             }
         }
         return null;
@@ -85,14 +93,18 @@ public class Inventory {
      * @return the Item whose name matches the given string
      */
     public Item removeItem(String itemName){
-        boolean found = false;
+        boolean done = false;
         int i = 0;
-        while(!found){
+        while(!done){
             Item current = items.get(i);
             if(current.getName().equalsIgnoreCase(itemName)){
                 items.remove(i);
                 currentWeight -= current.getWeight();
                 return current;
+            }
+            i++;
+            if(i >= items.size()){
+                done = true;
             }
         }
         return null;

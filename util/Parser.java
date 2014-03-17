@@ -55,26 +55,23 @@ public class Parser {
         }  else {
             int[] captureGroups = commands.getCaptureGroups(operator);
             for(int groupSize : captureGroups){
-                String segment;
+                String segment = null;
                 if(tokenizer.hasNext()){
-                    segment = tokenizer.next();
+                    segment = tokenizer.next().trim();
                     for(int i = 1; i < groupSize; i++){
                         if(tokenizer.hasNext()){
                             segment = segment + " " + tokenizer.next();
                         }
                     }
-                    captures.add(segment);
-                } else {
-                    break;  
+                    
                 }
+                if(segment!=null)captures.add(segment);
             }
         }
         
         tokenizer.close();
-
         
         return new Command(operator, captures);
-        
     }
 
     /**

@@ -84,7 +84,7 @@ public class Room
      * "Exits: north west".
      * @return Details of the room's exits.
      */
-    private String getExitString()
+    public String getExitString()
     {
         String returnString = "Exits:";
         for(String exit : exits.keySet()) {
@@ -108,21 +108,31 @@ public class Room
      * Puts an item into the inventory of the room
      * @param item The item to be placed in the room
      */
-    public void addItem(Item item) {
-        roomInventory.addItem(item);
+    public boolean addItem(Item item) {
+        return roomInventory.addItem(item);
     }
 
     /**
      * Take an item out of the room's inventory and return it
-     * @param itemName the name of the item to be removed from the 
+     * @param itemName the name of the item to be removed from the room
+     * @return The first item in the room with the given item name
      */
     public Item removeItem(String itemName) {
         return roomInventory.removeItem(itemName);
     }
+    /**
+     * Gets a given item from the room's inventory, but does not remove it
+     * @param itemName the name of the item to be returned
+     * @return The first item in the room with the given item name
+     */
     public Item getItem(String itemName){
         return roomInventory.getItem(itemName);
     }
        
+    public HashMap<String, String> getExits(){
+        return exits;
+    }
+    
     public void printItems(){
         String context = "In the room";
         roomInventory.printInventory(context);
