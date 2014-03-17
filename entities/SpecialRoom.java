@@ -8,7 +8,11 @@ import state.Game;
  * player enters a 'Special Room'. The differences are that this Class includes the informations for Riddles, which are used when the 
  * player enters a Special Room.
  * 
- * @author Josh Mulcock, Louis Capitanchik, John Stones, Alice Charterton 
+ *@author Louis Capitanchik
+ *@author Joshua Mulcock
+ *@author Alice Charterton
+ *@author John Stones
+ * 
  * @version 2014.03.09
  */
 public class SpecialRoom extends Room
@@ -59,6 +63,7 @@ public class SpecialRoom extends Room
     public Item getReward() {
         return reward;
     }
+    
     /**
      * Checks whether the answer entered by the user is equal to the actual answer
      * of the riddle.
@@ -70,6 +75,10 @@ public class SpecialRoom extends Room
         return complete = this.answer.equalsIgnoreCase(answer);
     }
     
+    /**
+     * Used to determine whether the riddle has been answered
+     * @return complete
+     */
     public boolean complete(){
         return complete;
     }

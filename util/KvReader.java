@@ -47,7 +47,10 @@ public class KvReader {
             fileReader = new BufferedReader(fileInput);
             
         } catch (FileNotFoundException e) {
+           
             return null;
+           
+           
         }
         
         String line;
@@ -63,7 +66,9 @@ public class KvReader {
                 returnMap.put(KvReader.cleanText(kv[0]), KvReader.cleanText(kv[1]));
             }
         } catch(IOException e) {
-            return null;
+           return null;
+            
+          
         }
         
         try {

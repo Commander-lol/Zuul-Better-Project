@@ -12,7 +12,11 @@ import java.util.Random;
  *
  * An NPC is a character that the player can interact with and trade items with.
  * 
- * @author  Josh Mulccock, Louis Capitanchick, Alice Charterton, John Stones.
+ *@author Louis Capitanchik
+ * @author Joshua Mulcock
+ * @author Alice Charterton
+ * @author John Stones
+ * 
  * @version 2014.03.04
  */
 
@@ -59,7 +63,8 @@ public String getName(){
 }
 
 /**
- * returns the item wanted by the NPC
+ * Gets the item wanted by the NPC
+ * @return the item wanted by the NPC
  */
 public String getItemNeeded(){
     return itemNeeded;
@@ -68,6 +73,8 @@ public String getItemNeeded(){
 
 /**
  * prints out the speech by the NPC
+ * 
+ * speech holds the speech required
  */
 public void speak(){
     String speech;
@@ -80,6 +87,14 @@ public void speak(){
     System.out.println("\"" + speech + "\"");
 }
 
+
+/**
+ * Used to move the NPCs into a valid and connected room
+ * exits is a HashMap of availabe exits
+ * r is a random variable
+ * valid is a boolean variable to show when a valid room has been found
+ * exitNum is the placement of the valid room found
+ */
 public void act(){
     HashMap<String, String> exits = context.getCurrentRoom().getExits();
     String[] exitDirs = (String[])exits.keySet().toArray();
@@ -97,9 +112,9 @@ public void act(){
 }
 
 
-
 /**
- * returns the the item held by the NPC
+ * gets the item held by the NPC
+ * @return the item held by NPC
  */
 public Item getItemHeld(){
     return itemHeld;
@@ -117,7 +132,8 @@ public Item swapItems(Item itemToSwap){
 }
 
 /**
- * returns the current room the NPC is in
+ * gets the current room the NPC is in
+ * @return the NPC's current room
  */
 public String getCurrentRoom(){
     return currentRoom;

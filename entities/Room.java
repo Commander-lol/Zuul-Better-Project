@@ -18,7 +18,12 @@ import state.Inventory;
  * stores a reference to the neighboring room.
  * 
  * @author  Michael Kölling and David J. Barnes
- * @version 2011.08.08
+ * @author Louis Capitanchik
+ * @author Joshua Mulcock
+ * @author Alice Charterton
+ * @author John Stones
+ * 
+ * @version 2014.03.14
  */
 
 public class Room 
@@ -40,6 +45,7 @@ public class Room
     {
         this(context, tempDepFix(description));
     }
+   
     private static final HashMap<String, String> tempDepFix(String s){HashMap<String, String> h = new HashMap<String, String>(); h.put("description", s); return h;}
     
     public Room(Game context, HashMap<String, String> attributes){
@@ -120,6 +126,7 @@ public class Room
     public Item removeItem(String itemName) {
         return roomInventory.removeItem(itemName);
     }
+    
     /**
      * Gets a given item from the room's inventory, but does not remove it
      * @param itemName the name of the item to be returned
@@ -128,11 +135,19 @@ public class Room
     public Item getItem(String itemName){
         return roomInventory.getItem(itemName);
     }
-       
+     
+    /**
+     * Used to find the rooms exits from the hashmaps
+     * @return returns the exits for the room
+     */
     public HashMap<String, String> getExits(){
         return exits;
     }
     
+    /**
+     * Used to print the what items are in the room
+     * context is a string that holds the information for why the items are being printed out
+     */
     public void printItems(){
         String context = "In the room";
         roomInventory.printInventory(context);

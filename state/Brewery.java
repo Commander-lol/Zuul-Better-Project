@@ -23,6 +23,7 @@ public class Brewery {
         this.context = context;
         this.product = product;
     }
+   
     /**
      * Checks the brewery to see if the given item is part of the recipe
      * @param itemName The name of the item being checked
@@ -54,6 +55,11 @@ public class Brewery {
         }
     }
     
+    /**
+     * Checks to see if the number of items combined is the correct amount
+     * @returns false if the number of items needed has a value
+     * @returns true if the number of items needed is null
+     */
     public boolean isFinished(){
         for(String s : neededItems){
             if(s!=null)return false;
