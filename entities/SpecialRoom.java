@@ -23,16 +23,6 @@ public class SpecialRoom extends Room
     private boolean complete = false;
     
     /**
-     * Creates a SpecialRoom class. Takes information from the Room parent class.
-     * 
-     * @param description The room's description.
-     * @param context An instance of the Game class.
-     */
-    public SpecialRoom (String description, Game context) {
-        super(description, context);
-    }
-    
-    /**
      * Creates an instance of SpecialRoom, a room that contains a riddle that should be answered and extends the Room class
      * 
      * @param context The Game object that the room belongs to
@@ -46,12 +36,16 @@ public class SpecialRoom extends Room
     }
     
     /**
+     * Gets the riddle for this Riddle Room
      * @return The riddle for the current special room.
      */
     public String getRiddle(){
         return riddle;
     }
-    
+    /**
+     * Sets the reward for this room that will be given to the player upon successfully answering the riddle
+     * @param reward The item that will be given to the player if they answer this riddle
+     */
     public void setReward(Item reward){
         this.reward = reward;
     }

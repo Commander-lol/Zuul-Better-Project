@@ -1,12 +1,13 @@
 #BlueJ class context
 comment0.params=weight\ name
 comment0.target=Item(float,\ java.lang.String)
+comment0.text=\r\n\ Creates\ a\ new\ Item\ instance\ with\ the\ given\ name\ and\ weight.\ The\ name\ is\ tightly\ coupled\ to\ an\ image\r\n\ and\ they\ must\ match\ exactly\ if\ they\ are\ to\ be\ linked\r\n\ @param\ weight\ The\ weight\ of\ the\ item\ in\ units\r\n\ @param\ name\ The\ name\ of\ the\ item\r\n
 comment1.params=
 comment1.target=float\ getWeight()
-comment1.text=\r\n\ @return\ the\ weight\ of\ the\ item\r\n
+comment1.text=\r\n\ Gets\ the\ weight\ of\ the\ item\r\n\ @return\ the\ weight\ of\ the\ item\r\n
 comment2.params=
 comment2.target=java.lang.String\ getName()
-comment2.text=\r\n\ @return\ the\ name\ of\ the\ item\r\n
+comment2.text=\r\n\ Gets\ the\ name\ of\ the\ item\r\n\ @return\ the\ name\ of\ the\ item\r\n
 comment3.params=
 comment3.target=void\ printImage()
 comment3.text=\r\n\ Prints\ the\ image\ associated\ with\ this\ item\ to\ stdout\r\n

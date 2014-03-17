@@ -38,6 +38,7 @@ public class Parser {
     }
 
     /**
+     * Gets a command from the user and subsequently parses and returns it
      * @return The next command from the user.
      */
     public Command getCommand() {

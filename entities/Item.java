@@ -26,12 +26,19 @@ public class Item {
     private float weight;
     private String name;
     
+    /**
+     * Creates a new Item instance with the given name and weight. The name is tightly coupled to an image
+     * and they must match exactly if they are to be linked
+     * @param weight The weight of the item in units
+     * @param name The name of the item
+     */
     public Item(float weight, String name) {
         this.weight = weight;
         this.name = name;
     }
 
     /**
+     * Gets the weight of the item
      * @return the weight of the item
      */
     public float getWeight() {
@@ -39,6 +46,7 @@ public class Item {
     }
 
     /**
+     * Gets the name of the item
      * @return the name of the item
      */
     public String getName() {

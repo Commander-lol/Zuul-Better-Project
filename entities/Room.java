@@ -28,26 +28,20 @@ import state.Inventory;
 
 public class Room 
 {
+    /** The flavour text for this room */
     protected String description;
+    /** A map of exits leading from this room */
     protected HashMap<String, String> exits;        // stores exits of this room.
+    /** The game context in which this room exists */
     protected Game context;
+    /** The inventory of items that are within this room */
     protected Inventory roomInventory;
 
     /**
-     * Create a room described "description". Initially, it has
-     * no exits. "description" is something like "a kitchen" or
-     * "an open court yard".
-     * @param description The room's description.
+     * Create a room in the given game context with the given attributes (Description, exits)
+     * @param context The Game object that 
      * @param context An instance of the Game class
-     * @Deprecated Use other constructor instead
      */
-    public Room(String description, Game context) 
-    {
-        this(context, tempDepFix(description));
-    }
-   
-    private static final HashMap<String, String> tempDepFix(String s){HashMap<String, String> h = new HashMap<String, String>(); h.put("description", s); return h;}
-    
     public Room(Game context, HashMap<String, String> attributes){
         this.context = context;
         this.description = attributes.remove("description");
@@ -66,8 +60,8 @@ public class Room
     }
 
     /**
+     * Gets the description of this room as defined in the constructor
      * @return The short description of the room
-     * (the one that was defined in the constructor).
      */
     public String getShortDescription()
     {

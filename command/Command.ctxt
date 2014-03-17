@@ -1,17 +1,17 @@
 #BlueJ class context
 comment0.params=operator\ captureGroups
 comment0.target=Command(java.lang.String,\ java.util.ArrayList)
-comment0.text=\r\n\ Create\ a\ command\ object.\ All\ words\ must\ be\ supplied,\ but\ any\ (or\ any\r\n\ combination)\ of\ the\ words\ can\ be\ <null>.\r\n\ \r\n\ @param\ firstWord\r\n\ \ \ \ \ \ \ \ \ \ \ \ The\ first\ word\ of\ the\ command.\ <Null>\ if\ the\ command\ was\ not\r\n\ \ \ \ \ \ \ \ \ \ \ \ recognised.\r\n\ @param\ secondWord\r\n\ \ \ \ \ \ \ \ \ \ \ \ The\ second\ word\ of\ the\ command.\r\n\ @param\ thirdWord\r\n\ \ \ \ \ \ \ \ \ \ \ \ The\ third\ word\ of\ the\ command.\r\n
+comment0.text=\r\n\ Create\ a\ command\ object.\ All\ words\ must\ be\ supplied,\ but\ any\ (or\ any\r\n\ combination)\ of\ the\ words\ can\ be\ <null>.\r\n\ \r\n\ @param\ operator\ The\ main\ operational\ word\r\n
 comment1.params=
 comment1.target=java.lang.String\ getOperator()
 comment1.text=\r\n\ Return\ the\ operator\ (the\ first\ word)\ of\ this\ command.\ If\ the\ command\r\n\ was\ not\ understood,\ the\ result\ is\ <null>.\r\n\ \r\n\ @return\ The\ command\ word.\r\n
 comment2.params=n
 comment2.target=java.lang.String\ getNthSegment(int)
-comment2.text=\r\n\ \r\n\ @param\ n\ The\ number\ of\ the\ command\ segment\ to\ get,\ where\ the\ operator\r\n\ is\ 0,\ the\ first\ operand\ is\ 1,\ the\ second\ operand\ is\ 2,\ etc.\r\n\ @return\ The\ captured\ segment\ of\ that\ command\r\n
+comment2.text=\r\n\ Gets\ the\ command\ segment\ from\ the\ Nth\ position\r\n\ @param\ n\ The\ number\ of\ the\ command\ segment\ to\ get,\ where\ the\ operator\r\n\ is\ 0,\ the\ first\ operand\ is\ 1,\ the\ second\ operand\ is\ 2,\ etc.\r\n\ @return\ The\ captured\ segment\ of\ that\ command\r\n
 comment3.params=
 comment3.target=boolean\ isUnknown()
-comment3.text=\r\n\ @return\ true\ if\ this\ command\ was\ not\ understood.\r\n
+comment3.text=\r\n\ Returns\ whether\ or\ not\ this\ command\ was\ valid\ or\ understood\r\n\ @return\ true\ if\ this\ command\ was\ not\ understood.\r\n
 comment4.params=n
 comment4.target=boolean\ hasNthWord(int)
-comment4.text=\r\n\ Checks\ to\ see\ if\ the\ command\ has\ the\ given\ number\ of\ capture\ groups\r\n
+comment4.text=\r\n\ Checks\ to\ see\ if\ the\ command\ has\ the\ given\ number\ of\ capture\ groups\r\n\ @param\ n\ The\ number\ of\ capture\ groups\ to\ check\ against\r\n\ @return\ Whether\ or\ not\ the\ command\ contains\ at\ least\ N\ capture\ groups\r\n
 numComments=5

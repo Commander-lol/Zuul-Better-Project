@@ -31,13 +31,7 @@ public class Command {
      * Create a command object. All words must be supplied, but any (or any
      * combination) of the words can be <null>.
      * 
-     * @param firstWord
-     *            The first word of the command. <Null> if the command was not
-     *            recognised.
-     * @param secondWord
-     *            The second word of the command.
-     * @param thirdWord
-     *            The third word of the command.
+     * @param operator The main operational word
      */
     public Command(String operator, ArrayList<String> captureGroups) {
         this.operator = operator;
@@ -55,7 +49,7 @@ public class Command {
     }
     
     /**
-     * 
+     * Gets the command segment from the Nth position
      * @param n The number of the command segment to get, where the operator
      * is 0, the first operand is 1, the second operand is 2, etc.
      * @return The captured segment of that command
@@ -71,6 +65,7 @@ public class Command {
     }
 
     /**
+     * Returns whether or not this command was valid or understood
      * @return true if this command was not understood.
      */
     public boolean isUnknown() {
@@ -79,6 +74,8 @@ public class Command {
 
     /**
      * Checks to see if the command has the given number of capture groups
+     * @param n The number of capture groups to check against
+     * @return Whether or not the command contains at least N capture groups
      */
     public boolean hasNthWord(int n){
         return segments.size()+1 >= n;

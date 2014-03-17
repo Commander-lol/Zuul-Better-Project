@@ -10,5 +10,4 @@ comment2.target=void\ throwInItem(entities.Item)
 comment2.text=\r\n\ Throw\ an\ item\ into\ the\ brewery.\ It\ will\ be\ lost\ regardless\ of\r\n\ whether\ or\ not\ it\ was\ required,\ but\ will\ not\ negatively\ affect\ the\ \r\n\ mixture\ if\ it\ wasn't\r\n\ @param\ item\ The\ item\ to\ throw\ into\ the\ brewery\r\n
 comment3.params=
 comment3.target=boolean\ isFinished()
-comment3.text=\r\n\ Checks\ to\ see\ if\ the\ number\ of\ items\ combined\ is\ the\ correct\ amount\r\n\ @returns\ false\ if\ the\ number\ of\ items\ needed\ has\ a\ value\r\n\ @returns\ true\ if\ the\ number\ of\ items\ needed\ is\ null\r\n
 numComments=4
