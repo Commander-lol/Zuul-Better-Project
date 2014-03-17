@@ -46,7 +46,7 @@ public class Room
         this.context = context;
         this.description = attributes.remove("description");
         exits = attributes;
-		roomInventory = new Inventory();
+        roomInventory = new Inventory(30000);
     }
 
     /**
@@ -84,11 +84,10 @@ public class Room
      * "Exits: north west".
      * @return Details of the room's exits.
      */
-    private String getExitString()
+    public String getExitString()
     {
         String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
+        for(String exit : exits.keySet()) {
             returnString += " " + exit;
         }
         return returnString;
@@ -105,19 +104,38 @@ public class Room
         return exits.get(direction);
     }
 
-	public void addItem(Item item) {
-		roomInventory.addItem(item);
-	   }
+    /**
+     * Puts an item into the inventory of the room
+     * @param item The item to be placed in the room
+     */
+    public boolean addItem(Item item) {
+        return roomInventory.addItem(item);
+    }
 
-	public void removeItem(String itemName) {
-		
-		roomInventory.removeItem(itemName);
-        
-	   }
-	   
-	public void printItemList(){
-	    String context = "In the room";
-	    roomInventory.printInventory(context);
-	   }
+    /**
+     * Take an item out of the room's inventory and return it
+     * @param itemName the name of the item to be removed from the room
+     * @return The first item in the room with the given item name
+     */
+    public Item removeItem(String itemName) {
+        return roomInventory.removeItem(itemName);
+    }
+    /**
+     * Gets a given item from the room's inventory, but does not remove it
+     * @param itemName the name of the item to be returned
+     * @return The first item in the room with the given item name
+     */
+    public Item getItem(String itemName){
+        return roomInventory.getItem(itemName);
+    }
+       
+    public HashMap<String, String> getExits(){
+        return exits;
+    }
+    
+    public void printItems(){
+        String context = "In the room";
+        roomInventory.printInventory(context);
+    }
 }
 

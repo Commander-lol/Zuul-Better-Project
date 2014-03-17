@@ -1,6 +1,7 @@
 package util;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 import command.Command;
 import command.CommandWords;
 
@@ -37,9 +38,8 @@ public class Parser {
      */
     public Command getCommand() {
         String inputLine;
-        String word1 = null;
-        String word2 = null;
-        String word3= null;
+        String operator = null;
+        ArrayList<String> captures = new ArrayList<String>();
 
         System.out.print("> ");
 
@@ -47,21 +47,31 @@ public class Parser {
 
         Scanner tokenizer = new Scanner(inputLine);
         if (tokenizer.hasNext()) {
-            word1 = tokenizer.next();
-            if (tokenizer.hasNext()) {
-                word2 = tokenizer.next();
+            operator = tokenizer.next();
+        }
+        
+        if (!commands.isCommand(operator)) {
+            operator = null; //Invalidate the command to notify subsequent functions
+        }  else {
+            int[] captureGroups = commands.getCaptureGroups(operator);
+            for(int groupSize : captureGroups){
+                String segment = null;
                 if(tokenizer.hasNext()){
-                    word3 = tokenizer.next();
+                    segment = tokenizer.next().trim();
+                    for(int i = 1; i < groupSize; i++){
+                        if(tokenizer.hasNext()){
+                            segment = segment + " " + tokenizer.next();
+                        }
+                    }
+                    
                 }
+                if(segment!=null)captures.add(segment);
             }
         }
+        
         tokenizer.close();
-
-        if (commands.isCommand(word1)) {
-            return new Command(word1, word2, word3);
-        } else {
-            return new Command(null, word2, word3);
-        }
+        
+        return new Command(operator, captures);
     }
 
     /**

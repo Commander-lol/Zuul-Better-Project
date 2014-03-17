@@ -1,9 +1,11 @@
 #BlueJ class context
 comment0.params=filePath
 comment0.target=java.util.HashMap\ readFile(java.lang.String)
-comment0.text=\n\ Reads\ the\ given\ file\ into\ a\ HashMap\ object\ and\ returns\ it.\n\ @param\ filePath\ The\ path\ to\ the\ file\ that\ will\ be\ read\ and\ returned\n\ @return\ A\ HashMap\ object\ populated\ with\ the\ contents\ of\ the\ file.\ Will\n\ \ return\ null\ if\ the\ file\ does\ not\ exist\ or\ throws\ an\ error\ on\ read.\n
+comment0.text=\r\n\ Reads\ the\ given\ file\ into\ a\ HashMap\ object\ and\ returns\ it.\r\n\ @param\ filePath\ The\ path\ to\ the\ file\ that\ will\ be\ read\ and\ returned\r\n\ @return\ A\ HashMap\ object\ populated\ with\ the\ contents\ of\ the\ file.\ Will\r\n\ \ return\ null\ if\ the\ file\ does\ not\ exist\ or\ throws\ an\ error\ on\ read.\r\n
 comment1.params=dir
 comment1.target=java.util.HashSet\ getKvFiles(java.lang.String)
+comment1.text=\r\n\ Recursively\ searches\ through\ the\ given\ directory\ and\ creates\ a\ set\ of\ relative\ paths\r\n\ to\ every\ .kv\ file\ found.\ If\ dir\ is\ not\ a\ directory,\ an\ empty\ HashSet\ will\ be\ returned\r\n\ unless\ dir\ is\ itself\ a\ .kv\ file,\ in\ which\ case\ the\ HashSet\ will\ contain\ dir\r\n\ @param\ dir\ The\ root\ directory\ to\ search\ for\ .kv\ files\r\n\ @return\ A\ HashSet\ containing\ the\ relative\ paths\ of\ every\ .kv\ file\ found\r\n\ @throws\ IOException\ Throws\ an\ IOException\ if\ it\ fails\ to\ create\ a\ DirectoryStream\ from\ the\ given\ string\r\n
 comment2.params=input
 comment2.target=java.lang.String\ cleanText(java.lang.String)
+comment2.text=\r\n\ Replaces\ some\ simple\ file\ based\ formatting\ elements\ with\ the\ appropriate\ tokens\:\r\n\ <ul>\r\n\ \t<li>\ \\n\ is\ replaced\ with\ a\ newline\ </li>\r\n\ \t<li>\ \u21E5\ is\ replaced\ with\ a\ tab\ </li>\r\n\ </ul>\r\n\ Also\ trims\ trailing\ and\ leading\ whitespace\r\n\ \r\n\ @param\ input\ The\ input\ string\ that\ will\ be\ cleaned\r\n\ @return\ A\ clean\ version\ of\ the\ input\ string,\ with\ formatting\ applied\ and\ whitespace\ trimmed\r\n
 numComments=3

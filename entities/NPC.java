@@ -1,6 +1,9 @@
 package entities;
+import state.Game;
 import entities.Item;
-
+import java.util.HashMap;
+import java.util.Set;
+import java.util.Random;
 /**
  * Class NPC - a non playing character.
  *
@@ -15,12 +18,9 @@ import entities.Item;
 
 
 public class NPC {
-    
-private String name;
+private Game context;    
+private String name, preSpeech, postSpeech, currentRoom, itemNeeded;
 private Item itemHeld;
-private Item itemNeeded;
-private String speech;
-private String currentRoom;
     
 /**
  * This constructs the NPC class, using information that will be passed when
@@ -39,18 +39,29 @@ private String currentRoom;
  * @param npcRoom is the room that the NPC is currrently in.
  */
     
-public NPC (String npcName, Item needed, Item held, String npcSpeech, String npcRoom){
-    name = npcName;
-    itemNeeded = needed;
-    itemHeld = held;
-    speech = npcSpeech;
-    currentRoom = npcRoom;
+public NPC (Game context, HashMap<String, String> attributes){
+    this.context = context;
+    name = attributes.get("name");
+    itemNeeded = attributes.get("wanted item");
+    itemHeld = context.adoptItem(attributes.get("held item"));
+    preSpeech = attributes.get("text");
+    postSpeech = attributes.get("post trade text");
+    currentRoom = attributes.get("room");
+    
+}
+
+/**
+ * Gets the NPCs name, as would be used in conversation
+ * @return The name of the NPC
+ */
+public String getName(){
+    return name;
 }
 
 /**
  * returns the item wanted by the NPC
  */
-public Item getItemNeeded(){
+public String getItemNeeded(){
     return itemNeeded;
 }
 
@@ -58,9 +69,33 @@ public Item getItemNeeded(){
 /**
  * prints out the speech by the NPC
  */
-public void printSpeech(){
-    System.out.println(speech);
+public void speak(){
+    String speech;
+    if(itemHeld.getName().equals(itemNeeded)){
+        speech = postSpeech;
+    } else  {
+        speech = preSpeech;
+    }
+    System.out.println(name + " says:");
+    System.out.println("\"" + speech + "\"");
 }
+
+public void act(){
+    HashMap<String, String> exits = context.getCurrentRoom().getExits();
+    String[] exitDirs = (String[])exits.keySet().toArray();
+    String exit = null;
+    Random r = new Random();
+    boolean valid = false;
+    while(!valid){
+        int exitNum = r.nextInt(exitDirs.length);
+        exit = exitDirs[exitNum];
+        if(!exit.equals("upstairs") && !exit.equals("downstairs")){
+            valid = true;
+        }
+    }
+    currentRoom = exits.get(exit);
+}
+
 
 
 /**
@@ -68,6 +103,17 @@ public void printSpeech(){
  */
 public Item getItemHeld(){
     return itemHeld;
+}
+
+/**
+ * Swaps the item held by the npc with the given item
+ * @param itemToSwap the item that will be given to the NPC
+ * @return the item the NPC was previously holding
+ */
+public Item swapItems(Item itemToSwap){
+    Item i = itemHeld;
+    itemHeld = itemToSwap;
+    return i;
 }
 
 /**

@@ -14,8 +14,9 @@ import state.Game;
 public class SpecialRoom extends Room
 {
     private String riddle;
-    private String riddleAnswer;
     private String answer;
+    private Item reward;
+    private boolean complete = false;
     
     /**
      * Creates a SpecialRoom class. Takes information from the Room parent class.
@@ -27,11 +28,17 @@ public class SpecialRoom extends Room
         super(description, context);
     }
     
+    /**
+     * Creates an instance of SpecialRoom, a room that contains a riddle that should be answered and extends the Room class
+     * 
+     * @param context The Game object that the room belongs to
+     * @param attributes The attributes that make up the game
+     */
     public SpecialRoom(Game context, HashMap<String, String> attributes){
         super(context, attributes);
         // Riddle parts are still going to be in the HashMap, remove them
         this.riddle = this.exits.remove("riddle");
-        this.riddleAnswer = this.exits.remove("answer");
+        this.answer = this.exits.remove("answer");
     }
     
     /**
@@ -41,24 +48,29 @@ public class SpecialRoom extends Room
         return riddle;
     }
     
+    public void setReward(Item reward){
+        this.reward = reward;
+    }
+    
+    /**
+     * Gets the item from this room that has been specified as the reward for succesfully completing the riddle
+     * @return The reward item for getting the correct answer
+     */
+    public Item getReward() {
+        return reward;
+    }
     /**
      * Checks whether the answer entered by the user is equal to the actual answer
      * of the riddle.
      * 
-     * @param userAnswer The answer entered by the User.
-     * @return Whether the answers were euqal or not.
+     * @param answer The answer entered by the User.
+     * @return Whether the answers were equal or not.
      */
-    public boolean isAnswerCorrect(String userAnswer) {
-        boolean answerCorrect;
-        answer = userAnswer;
-        
-        if (answer == riddleAnswer) {
-            answerCorrect = true;
-        }
-        else {
-            answerCorrect = false;
-        }
-        
-        return answerCorrect;
+    public boolean attemptAnswer(String answer) {
+        return complete = this.answer.equalsIgnoreCase(answer);
+    }
+    
+    public boolean complete(){
+        return complete;
     }
 }

@@ -1,5 +1,7 @@
 package command;
 
+import java.util.ArrayList;
+
 /**
  * This class is part of the "Go Sunset" application. "Go Sunset" is a
  * very simple, text based adventure game.
@@ -22,9 +24,8 @@ package command;
  */
 
 public class Command {
-    private String commandWord;
-    private String secondWord;
-    private String thirdWord;
+    private String operator;
+    private ArrayList<String> segments;
 
     /**
      * Create a command object. All words must be supplied, but any (or any
@@ -38,60 +39,48 @@ public class Command {
      * @param thirdWord
      *            The third word of the command.
      */
-    public Command(String firstWord, String secondWord, String thirdWord) {
-        commandWord = firstWord;
-        this.secondWord = secondWord;
-        this.thirdWord = thirdWord;
+    public Command(String operator, ArrayList<String> captureGroups) {
+        this.operator = operator;
+        this.segments = captureGroups;
     }
 
     /**
-     * Return the command word (the first word) of this command. If the command
+     * Return the operator (the first word) of this command. If the command
      * was not understood, the result is <null>.
      * 
      * @return The command word.
      */
-    public String getCommandWord() {
-        return commandWord;
-    }
-
-    /**
-     * Return the second word of this command. If no second word was supplied or
-     * the word was not understood, the result is <null>.
-     * 
-     * @return The second word.
-     */
-    public String getSecondWord() {
-        return secondWord;
+    public String getOperator(){
+        return operator;
     }
     
     /**
-     * Return the third word of this command. If no third word was supplied or
-     * the word was not understood, the result is <null>.
      * 
-     * @return The third word.
+     * @param n The number of the command segment to get, where the operator
+     * is 0, the first operand is 1, the second operand is 2, etc.
+     * @return The captured segment of that command
      */
-    public String getThirdWord() {
-        return thirdWord;
+    public String getNthSegment(int n){
+        if(n == 0){
+            return operator;
+        } else if(segments.size() < n){
+            return null;
+        } else {
+            return segments.get(n-1);
+        }
     }
 
     /**
      * @return true if this command was not understood.
      */
     public boolean isUnknown() {
-        return (commandWord == null);
+        return (operator == null);
     }
 
     /**
-     * @return true if the command has a second word.
+     * Checks to see if the command has the given number of capture groups
      */
-    public boolean hasSecondWord() {
-        return (secondWord != null);
-    }
-    
-    /**
-     * @return true if the command has a third word.
-     */
-    public boolean hasThirdWord() {
-        return (thirdWord != null);
+    public boolean hasNthWord(int n){
+        return segments.size()+1 >= n;
     }
 }

@@ -1,9 +1,10 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Inventory()
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Inventory\r\n
+comment0.text=\r\n\ Creates\ a\ new\ inventory\ with\ a\ default\ maximum\ weight\ of\ 300\ units\r\n
 comment1.params=weight
 comment1.target=Inventory(float)
+comment1.text=\r\n\ Creates\ a\ new\ inventory\ with\ a\ specified\ maximum\ weight\r\n\ @param\ weight\ The\ maximum\ weights\ worth\ of\ objects\ that\ can\ be\ stored\ in\ this\ inventory\r\n
 comment2.params=newItem
 comment2.target=boolean\ addItem(entities.Item)
 comment2.text=\r\n\ Attempts\ to\ add\ the\ item\ to\ the\ inventory,\ but\ will\r\n\ not\ do\ so\ if\ that\ would\ increase\ the\ weight\ beyond\r\n\ the\ defined\ maximum\r\n\ \r\n\ @param\ newItem\ The\ item\ to\ put\ in\ the\ inventory\r\n\ @return\ true\ if\ the\ item\ has\ successfully\ been\ added,\r\n\ false\ if\ it\ is\ too\ heavy\r\n

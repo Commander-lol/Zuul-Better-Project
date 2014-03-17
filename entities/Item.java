@@ -44,16 +44,13 @@ public class Item {
     /**
      * Prints the image associated with this item to stdout
      */
-    public void printImage() {
+    public void printImage() throws FileNotFoundException{
         FileReader fileInput;
         BufferedReader fileReader;
-        try {
-            fileInput = new FileReader("./images/"+name.toLowerCase());
-            fileReader = new BufferedReader(fileInput);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace(System.err);
-            return;
-        }
+        
+        fileInput = new FileReader("./images/"+name.toLowerCase());
+        fileReader = new BufferedReader(fileInput);
+        
         String line;
         try {
             while((line = fileReader.readLine()) != null){
